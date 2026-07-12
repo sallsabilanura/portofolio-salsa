@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Salsabila - Portfolio</title>
+  <meta name="description" content="Portfolio Salsabila Nur Aisyah, full-stack developer dan UI/UX designer." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a class="brand" href="#beranda">
+        Salsabila
+        <span>Salsabila Nur Aisyah</span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a class="active" href="#beranda">Beranda</a></li>
+        <li><a href="#tentang">Tentang</a></li>
+        <li><a href="#project">Project</a></li>
+        <li><a href="#design">Design</a></li>
+        <li><a href="#skill">Skill</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="language-toggle">
+          <button type="button" class="active" data-lang="id">ID</button>
+          <button type="button" data-lang="en">EN</button>
+        </div>
+        <button class="menu-toggle" id="menuToggle" type="button">=</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="beranda">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <p class="eyebrow">Portfolio</p>
+          <h1 class="title-xl">Salsabila</h1>
+          <p class="hero-name">Salsabila Nur Aisyah</p>
+          <h2 class="title-lg">Full-stack dev & UI/UX designer.</h2>
+          <p class="hero-copy">
+            Membangun produk digital yang rapi, fungsional, dan siap pakai.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-red" href="#project">Lihat Project</a>
+            <a class="btn btn-outline" href="#kontak">Hubungi</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat"><strong>45+</strong><span>Projects</span></div>
+            <div class="stat"><strong>5+</strong><span>Years</span></div>
+            <div class="stat"><strong>5.0</strong><span>Rating</span></div>
+          </div>
+        </div>
+
+        <aside class="hero-panel card reveal">
+          <div class="mock-browser">
+            <div class="mock-top">
+              <span class="mock-dot"></span>
+              <span class="mock-dot"></span>
+              <span class="mock-dot"></span>
+            </div>
+            <div class="mock-body">
+              <div class="mock-sidebar">
+                <span class="mock-line blue"></span>
+                <span class="mock-line"></span>
+                <span class="mock-line yellow"></span>
+                <span class="mock-line"></span>
+                <span class="mock-line red"></span>
+              </div>
+              <div>
+                <div class="mock-chart">
+                  <span class="mock-bar" style="height: 48%;"></span>
+                  <span class="mock-bar" style="height: 74%;"></span>
+                  <span class="mock-bar" style="height: 55%;"></span>
+                  <span class="mock-bar" style="height: 88%;"></span>
+                  <span class="mock-bar" style="height: 66%;"></span>
+                </div>
+                <div class="mock-profile-widget">
+                  <div class="mock-avatar">
+                    <img src="images/foto-salsa.jpg" alt="Salsabila" onerror="this.style.display='none'">
+                  </div>
+                  <div class="mock-profile-info">
+                    <span class="mock-name">Salsabila</span>
+                    <span class="mock-role">Full-stack & UI/UX</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- TENTANG -->
+    <section class="section section-soft" id="tentang">
+      <div class="container about-grid">
+        <aside class="profile-card card reveal">
+          <div class="avatar-photo">
+            <img src="images/foto-salsa.jpg" alt="Salsabila" onerror="this.style.display='none'">
+          </div>
+          <h2 class="title-md">Salsabila Nur Aisyah</h2>
+          <p class="lead">SALSA</p>
+          <div class="info-list">
+            <div class="info-row"><strong>Lokasi</strong><span>Depok</span></div>
+            <div class="info-row"><strong>Pendidikan</strong><span>Sistem Informasi</span></div>
+            <div class="info-row"><strong>LinkedIn</strong><a href="#" class="text-blue">/in/salsabilanuraisyah</a></div>
+            <div class="info-row"><strong>GitHub</strong><a href="#" class="text-blue">@salsadev</a></div>
+          </div>
+        </aside>
+
+        <div class="about-copy card reveal">
+          <h2 class="title-lg">Kode & desain, dua sisi mata uang yang sama.</h2>
+          <p class="lead">
+            Full-stack developer & UI/UX designer. Jembatan antara estetika dan performa backend. Dari Figma sampai Laravel.
+          </p>
+          <div class="stack-list">
+            <span class="pill">Laravel</span>
+            <span class="pill">Vue.js</span>
+            <span class="pill">React</span>
+            <span class="pill pill-yellow">Figma</span>
+          </div>
+          <div class="studio-callout">
+            <p class="eyebrow">Design Brand</p>
+            <h3 class="title-md">Korrastudio.id</h3>
+            <a class="btn btn-blue" href="https://instagram.com/korrastudio.id" target="_blank">Follow</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECT -->
+    <section class="section" id="project">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Project</p>
+            <h2 class="title-lg">Karya terpilih.</h2>
+          </div>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card card reveal">
+            <div class="project-thumb">
+              <img src="images/project_aset.png" alt="Project" loading="lazy" />
+            </div>
+            <div class="project-body">
+              <h3 class="title-md">Manajemen Aset & Depresiasi</h3>
+              <div class="tags">
+                <span class="tag red">Laravel</span>
+                <span class="tag yellow">MySQL</span>
+              </div>
+              <p>Lacak aset dan depresiasi otomatis.</p>
+              <div style="display: flex; gap: 10px; margin-top: 16px;">
+                <a class="btn btn-red" href="#">Demo</a>
+                <a class="btn btn-outline" href="#">Repo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card card reveal">
+            <div class="project-thumb">
+              <img src="images/project_asuhbareng.png" alt="Project" loading="lazy" />
+            </div>
+            <div class="project-body">
+              <h3 class="title-md">Asuhbareng Management</h3>
+              <div class="tags">
+                <span class="tag">Vue.js</span>
+                <span class="tag red">REST API</span>
+              </div>
+              <p>Dashboard internal dengan role-based access.</p>
+              <div style="display: flex; gap: 10px; margin-top: 16px;">
+                <a class="btn btn-red" href="#">Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card card reveal">
+            <div class="project-thumb">
+              <img src="images/project_koskora.png" alt="Project" loading="lazy" />
+            </div>
+            <div class="project-body">
+              <h3 class="title-md">Koskora Property</h3>
+              <div class="tags">
+                <span class="tag">PHP</span>
+                <span class="tag red">UI/UX</span>
+              </div>
+              <p>Manajemen kos & properti.</p>
+              <div style="display: flex; gap: 10px; margin-top: 16px;">
+                <a class="btn btn-red" href="#">Demo</a>
+                <a class="btn btn-outline" href="#">Repo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card card reveal">
+            <div class="project-thumb">
+              <img src="images/project_web.png" alt="Project" loading="lazy" />
+            </div>
+            <div class="project-body">
+              <h3 class="title-md">Web Presence</h3>
+              <div class="tags">
+                <span class="tag red">Frontend</span>
+                <span class="tag">Figma</span>
+              </div>
+              <p>Company profile & campaign platforms.</p>
+              <div style="display: flex; gap: 10px; margin-top: 16px;">
+                <a class="btn btn-red" href="#">Demo</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESIGN -->
+    <section class="section section-soft" id="design">
+      <div class="container">
+        <div class="section-head center reveal">
+          <p class="eyebrow">Design</p>
+          <h2 class="title-lg">Bersih, terstruktur, siap coding.</h2>
+        </div>
+
+        <div class="design-grid">
+          <article class="design-card card reveal">
+            <div class="design-icon">UI</div>
+            <h3 class="title-md">Mobile Apps</h3>
+            <p>Flow simpel, komponen konsisten.</p>
+          </article>
+          <article class="design-card card reveal">
+            <div class="design-icon">WD</div>
+            <h3 class="title-md">Web Dashboards</h3>
+            <p>Data & analytics yang rapi.</p>
+          </article>
+          <article class="design-card card reveal">
+            <div class="design-icon">DS</div>
+            <h3 class="title-md">Design Systems</h3>
+            <p>Token, komponen, dokumentasi.</p>
+          </article>
+        </div>
+
+        <div class="instagram-callout reveal">
+          <div>
+            <h3 class="title-md">Korrastudio.id</h3>
+            <p>Portofolio desain di Instagram.</p>
+          </div>
+          <a class="btn btn-red" href="https://instagram.com/korrastudio.id" target="_blank">Lihat</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILL -->
+    <section class="section" id="skill">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Skill</p>
+            <h2 class="title-lg">Yang aku kuasai.</h2>
+          </div>
+        </div>
+
+        <div class="skills-grid" id="skillsGrid">
+          <article class="skill-card card reveal">
+            <h3 class="title-md">Front-End</h3>
+            <div class="skill-list">
+              <div class="skill-row"><div class="skill-meta"><span>HTML/CSS</span><span>95%</span></div><div class="skill-track"><span class="skill-fill" style="--value: 95%;"></span></div></div>
+              <div class="skill-row"><div class="skill-meta"><span>JavaScript</span><span>88%</span></div><div class="skill-track"><span class="skill-fill red" style="--value: 88%;"></span></div></div>
+              <div class="skill-row"><div class="skill-meta"><span>Vue/React</span><span>85%</span></div><div class="skill-track"><span class="skill-fill yellow" style="--value: 85%;"></span></div></div>
+            </div>
+          </article>
+
+          <article class="skill-card card reveal">
+            <h3 class="title-md">Back-End</h3>
+            <div class="skill-list">
+              <div class="skill-row"><div class="skill-meta"><span>PHP/Laravel</span><span>92%</span></div><div class="skill-track"><span class="skill-fill red" style="--value: 92%;"></span></div></div>
+              <div class="skill-row"><div class="skill-meta"><span>MySQL</span><span>87%</span></div><div class="skill-track"><span class="skill-fill" style="--value: 87%;"></span></div></div>
+              <div class="skill-row"><div class="skill-meta"><span>REST API</span><span>84%</span></div><div class="skill-track"><span class="skill-fill yellow" style="--value: 84%;"></span></div></div>
+            </div>
+          </article>
+
+          <article class="skill-card card reveal">
+            <h3 class="title-md">UI/UX</h3>
+            <div class="skill-list">
+              <div class="skill-row"><div class="skill-meta"><span>Figma</span><span>90%</span></div><div class="skill-track"><span class="skill-fill" style="--value: 90%;"></span></div></div>
+              <div class="skill-row"><div class="skill-meta"><span>Design System</span><span>86%</span></div><div class="skill-track"><span class="skill-fill red" style="--value: 86%;"></span></div></div>
+              <div class="skill-row"><div class="skill-meta"><span>Prototyping</span><span>83%</span></div><div class="skill-track"><span class="skill-fill yellow" style="--value: 83%;"></span></div></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="tool-list reveal">
+          <span class="pill">Laravel</span>
+          <span class="pill">Vue.js</span>
+          <span class="pill">React</span>
+          <span class="pill">PHP</span>
+          <span class="pill">MySQL</span>
+          <span class="pill pill-yellow">Figma</span>
+          <span class="pill">Tailwind</span>
+          <span class="pill">Git</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- KONTAK -->
+    <section class="section section-soft" id="kontak">
+      <div class="container contact-grid">
+        <aside class="contact-panel card reveal">
+          <p class="eyebrow">Kontak</p>
+          <h2 class="title-lg">Ayo bikin sesuatu bareng.</h2>
+          <p class="lead">Freelance, kolaborasi, atau konsultasi.</p>
+          <div class="contact-list">
+            <a class="contact-item" href="mailto:salsabilanura0909@gmail.com"><span class="contact-mark">E</span>salsabilanura0909@gmail.com</a>
+            <span class="contact-item"><span class="contact-mark">ID</span>Indonesia</span>
+            <a class="contact-item" href="https://instagram.com/korrastudio.id" target="_blank"><span class="contact-mark">IG</span>@korrastudio.id</a>
+          </div>
+        </aside>
+
+        <form class="form-card card reveal" id="contactForm" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="name">Nama</label>
+              <input id="name" name="name" type="text" required />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" required />
+            </div>
+            <div class="field full">
+              <label for="message">Pesan</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            <div class="field full">
+              <button class="btn btn-red" type="submit">Kirim</button>
+            </div>
+          </div>
+          <div class="form-message" id="formMessage">Pesan terkirim.</div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h2>Salsabila</h2>
+          <p>Kode & desain untuk produk digital.</p>
+        </div>
+        <div>
+          <h3>Halaman</h3>
+          <div class="footer-links">
+            <a href="#beranda">Beranda</a>
+            <a href="#tentang">Tentang</a>
+            <a href="#project">Project</a>
+            <a href="#design">Design</a>
+            <a href="#skill">Skill</a>
+          </div>
+        </div>
+        <div>
+          <h3>Kontak</h3>
+          <div class="footer-links">
+            <span>salsabilanura0909@gmail.com</span>
+            <span>Indonesia</span>
+            <a href="https://instagram.com/korrastudio.id">@korrastudio.id</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Salsabila</span>
+        <a href="https://instagram.com/korrastudio.id" target="_blank">@korrastudio.id</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
