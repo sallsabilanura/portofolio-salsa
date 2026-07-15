@@ -2,47 +2,51 @@
 
 const translations = {
   id: {
+    // Navigation
     'nav.home': 'Beranda',
     'nav.about': 'Tentang',
     'nav.project': 'Project',
     'nav.design': 'Design',
     'nav.skills': 'Skill',
     'nav.contact': 'Kontak',
+    
+    // Hero
     'hero.eyebrow': 'Portfolio',
     'hero.fullName': 'Salsabila Nur Aisyah',
-    'hero.tagline': 'Full-stack dev & UI/UX designer.',
-    'hero.intro': 'Membangun produk digital yang rapi, fungsional, dan siap pakai.',
+    'hero.tagline': 'Web Developer',
+    'hero.intro': 'Berpengalaman bikin aplikasi web pakai Laravel, Tailwind CSS, dan MySQL. Cepat belajar, disiplin, dan suka ngurusin detail.',
     'hero.ctaProject': 'Lihat Project',
     'hero.ctaContact': 'Hubungi',
-    'hero.statProjects': 'Projects',
-    'hero.statYears': 'Years',
-    'hero.statRating': 'Rating',
+    'hero.statProjects': 'Project',
+    'hero.statExperience': 'Pengalaman',
+    'hero.statCertification': 'Sertifikasi',
+    
+    // About
     'about.eyebrow': 'Tentang',
-    'about.nickname': 'SALSA',
     'about.locationLabel': 'Lokasi',
     'about.location': 'Depok',
     'about.educationLabel': 'Pendidikan',
     'about.education': 'Sistem Informasi',
     'about.linkedin': 'LinkedIn',
     'about.github': 'GitHub',
-    'about.title': 'Kode & desain, dua sisi mata uang yang sama.',
-    'about.bio': 'Full-stack developer & UI/UX designer. Jembatan antara estetika dan performa backend. Dari Figma sampai Laravel.',
+    'about.title': 'Dari kode sampai produk berguna.',
+    'about.bio': 'Berpengalaman bikin aplikasi web pakai Laravel, Tailwind CSS, dan MySQL. Cepat belajar, disiplin, dan suka ngurusin detail.',
+    
+    // Studio
     'studio.eyebrow': 'Design Brand',
     'studio.button': 'Follow',
+    
+    // Projects
     'projects.eyebrow': 'Project',
     'projects.title': 'Karya terpilih.',
     'projects.btnDemo': 'Demo',
-    'projects.btnGithub': 'Repo',
-    'design.eyebrow': 'Design',
-    'design.title': 'Bersih, terstruktur, siap coding.',
-    'design.mobile': 'Flow simpel, komponen konsisten.',
-    'design.dashboard': 'Data & analytics yang rapi.',
-    'design.system': 'Token, komponen, dokumentasi.',
-    'design.calloutTitle': 'Korrastudio.id',
-    'design.calloutDesc': 'Portofolio desain di Instagram.',
-    'design.calloutBtn': 'Lihat',
+    'projects.btnRepo': 'Repo',
+    
+    // Skills
     'skills.eyebrow': 'Skill',
     'skills.title': 'Yang aku kuasai.',
+    
+    // Contact
     'contact.eyebrow': 'Kontak',
     'contact.title': 'Ayo bikin sesuatu bareng.',
     'contact.desc': 'Freelance, kolaborasi, atau konsultasi.',
@@ -51,50 +55,56 @@ const translations = {
     'form.message': 'Pesan',
     'form.button': 'Kirim',
     'form.success': 'Pesan terkirim.',
+    
+    // Footer
     'footer.tagline': 'Kode & desain untuk produk digital.'
   },
   en: {
+    // Navigation
     'nav.home': 'Home',
     'nav.about': 'About',
     'nav.project': 'Projects',
     'nav.design': 'Design',
     'nav.skills': 'Skills',
     'nav.contact': 'Contact',
+    
+    // Hero
     'hero.eyebrow': 'Portfolio',
     'hero.fullName': 'Salsabila Nur Aisyah',
-    'hero.tagline': 'Full-stack dev & UI/UX designer.',
-    'hero.intro': 'Building clean, functional, ready-to-use digital products.',
+    'hero.tagline': 'Web Developer',
+    'hero.intro': 'Experienced in building web apps with Laravel, Tailwind CSS, and MySQL. Fast learner, disciplined, and detail-oriented.',
     'hero.ctaProject': 'View Projects',
     'hero.ctaContact': 'Contact',
     'hero.statProjects': 'Projects',
-    'hero.statYears': 'Years',
-    'hero.statRating': 'Rating',
+    'hero.statExperience': 'Experience',
+    'hero.statCertification': 'Certification',
+    
+    // About
     'about.eyebrow': 'About',
-    'about.nickname': 'SALSA',
     'about.locationLabel': 'Location',
     'about.location': 'Depok',
     'about.educationLabel': 'Education',
     'about.education': 'Information Systems',
     'about.linkedin': 'LinkedIn',
     'about.github': 'GitHub',
-    'about.title': 'Code & design, two sides of the same coin.',
-    'about.bio': 'Full-stack developer & UI/UX designer. Bridging aesthetics and backend performance. From Figma to Laravel.',
+    'about.title': 'From code to useful products.',
+    'about.bio': 'Experienced in building web apps with Laravel, Tailwind CSS, and MySQL. Fast learner, disciplined, and detail-oriented.',
+    
+    // Studio
     'studio.eyebrow': 'Design Brand',
     'studio.button': 'Follow',
+    
+    // Projects
     'projects.eyebrow': 'Projects',
     'projects.title': 'Selected works.',
     'projects.btnDemo': 'Demo',
-    'projects.btnGithub': 'Repo',
-    'design.eyebrow': 'Design',
-    'design.title': 'Clean, structured, ready to code.',
-    'design.mobile': 'Simple flows, consistent components.',
-    'design.dashboard': 'Clean data & analytics.',
-    'design.system': 'Tokens, components, documentation.',
-    'design.calloutTitle': 'Korrastudio.id',
-    'design.calloutDesc': 'Design portfolio on Instagram.',
-    'design.calloutBtn': 'View',
+    'projects.btnRepo': 'Repo',
+    
+    // Skills
     'skills.eyebrow': 'Skills',
     'skills.title': 'What I master.',
+    
+    // Contact
     'contact.eyebrow': 'Contact',
     'contact.title': 'Let\'s build something together.',
     'contact.desc': 'Freelance, collaboration, or consulting.',
@@ -103,10 +113,13 @@ const translations = {
     'form.message': 'Message',
     'form.button': 'Send',
     'form.success': 'Message sent.',
+    
+    // Footer
     'footer.tagline': 'Code & design for digital products.'
   }
 };
 
+// DOM Elements
 const navLinks = document.getElementById('navLinks');
 const menuToggle = document.getElementById('menuToggle');
 const langButtons = document.querySelectorAll('[data-lang]');
@@ -117,6 +130,7 @@ const form = document.getElementById('contactForm');
 const formMessage = document.getElementById('formMessage');
 const skillsGrid = document.getElementById('skillsGrid');
 
+// Language Functions
 function setLanguage(lang) {
   const dictionary = translations[lang] || translations.id;
 
@@ -137,26 +151,30 @@ function setLanguage(lang) {
   localStorage.setItem('salsa-language', lang);
 }
 
+// Event Listeners for Language
 langButtons.forEach((button) => {
   button.addEventListener('click', () => setLanguage(button.dataset.lang));
 });
 
+// Mobile Menu
 menuToggle.addEventListener('click', () => {
   const isOpen = navLinks.classList.toggle('open');
   document.body.classList.toggle('nav-open', isOpen);
   menuToggle.setAttribute('aria-expanded', String(isOpen));
-  menuToggle.textContent = isOpen ? 'x' : '=';
+  menuToggle.textContent = isOpen ? '✕' : '☰';
 });
 
+// Close menu when clicking a link
 sectionLinks.forEach((link) => {
   link.addEventListener('click', () => {
     navLinks.classList.remove('open');
     document.body.classList.remove('nav-open');
     menuToggle.setAttribute('aria-expanded', 'false');
-    menuToggle.textContent = '=';
+    menuToggle.textContent = '☰';
   });
 });
 
+// Active Navigation
 function updateActiveNav() {
   let activeId = 'beranda';
 
@@ -174,6 +192,7 @@ function updateActiveNav() {
 window.addEventListener('scroll', updateActiveNav, { passive: true });
 updateActiveNav();
 
+// Reveal Animations
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -188,6 +207,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
 
+// Skills Animation
 if (skillsGrid) {
   const skillObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -201,6 +221,7 @@ if (skillsGrid) {
   skillObserver.observe(skillsGrid);
 }
 
+// Contact Form
 if (form) {
   form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -219,4 +240,73 @@ if (form) {
   });
 }
 
+/* ===== Lightbox / Zoom Preview ===== */
+const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.getElementById('lightboxImage');
+const lightboxCaption = document.getElementById('lightboxCaption');
+const lightboxClose = document.getElementById('lightboxClose');
+const zoomableThumbs = document.querySelectorAll('.project-thumb.zoomable');
+
+function openLightbox(imgEl, caption) {
+  lightboxImage.src = imgEl.src;
+  lightboxImage.alt = imgEl.alt || caption || '';
+  lightboxCaption.textContent = caption || '';
+  lightbox.classList.add('open');
+  document.body.classList.add('nav-open');
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  document.body.classList.remove('nav-open');
+  lightboxImage.src = '';
+}
+
+zoomableThumbs.forEach((thumb) => {
+  thumb.addEventListener('click', () => {
+    const img = thumb.querySelector('img');
+    if (img) {
+      openLightbox(img, thumb.dataset.caption);
+    }
+  });
+});
+
+if (lightboxClose) {
+  lightboxClose.addEventListener('click', closeLightbox);
+}
+
+if (lightbox) {
+  lightbox.addEventListener('click', (event) => {
+    if (event.target === lightbox) {
+      closeLightbox();
+    }
+  });
+}
+
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && lightbox && lightbox.classList.contains('open')) {
+    closeLightbox();
+  }
+});
+
+// Set initial language
 setLanguage(localStorage.getItem('salsa-language') || 'id');
+
+// Smooth scroll for all anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const href = this.getAttribute('href');
+    if (href === '#') return;
+    
+    const target = document.querySelector(href);
+    if (target) {
+      e.preventDefault();
+      const headerHeight = document.querySelector('.site-header').offsetHeight;
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+      
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
