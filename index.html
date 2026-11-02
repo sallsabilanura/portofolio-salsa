@@ -9,1673 +9,278 @@
   <link rel="apple-touch-icon" href="images/korra.png" />
   <title>Salsabila - Portfolio</title>
   <meta name="description" content="Portfolio Salsabila Nur Aisyah, Web Developer." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        // Breakpoint disamakan dengan desain sebelumnya (mobile-first)
+        screens: { xs: '401px', sm: '641px', nav: '821px', tab: '901px', lg: '1025px' },
+        extend: {
+          colors: {
+            red: { DEFAULT: '#FF3131' },
+            blue: { DEFAULT: '#1800AD' },
+            yellow: { DEFAULT: '#FEC107' },
+            ink: '#1a1a1a',
+            muted: '#626262',
+            soft: '#f7f7f9',
+            line: '#dedee8',
+            tech: {
+              php: '#777bb4',
+              laravel: '#ff2d20',
+              mysql: '#00758f',
+              js: '#f7df1e',
+              tailwind: '#06b6d4',
+              figma: '#a259ff'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'Arial', 'sans-serif'],
+            display: ['Sora', 'Arial', 'sans-serif']
+          },
+          boxShadow: {
+            card: '0 8px 24px rgba(26, 26, 26, 0.06)',
+            lift: '0 16px 40px rgba(26, 26, 26, 0.08)'
+          },
+          keyframes: {
+            marquee: { from: { transform: 'translateX(0)' }, to: { transform: 'translateX(-50%)' } }
+          },
+          animation: { marquee: 'marquee 32s linear infinite' }
+        }
+      }
+    };
+  </script>
+
   <link rel="stylesheet" href="css/style.css" />
-  <style>
-    /* =====================================================
-       SALSA Portfolio - Clean Minimal (FULL)
-       ===================================================== */
 
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap');
+  <!-- Komponen kecil yang dipakai berulang -->
+  <style type="text/tailwindcss">
+    @layer components {
+      .wrap      { @apply mx-auto w-[min(1120px,calc(100%-16px))] xs:w-[min(1120px,calc(100%-20px))] sm:w-[min(1120px,calc(100%-24px))] nav:w-[min(1120px,calc(100%-32px))]; }
+      .section   { @apply py-10 sm:py-12 nav:py-[60px] scroll-mt-[92px]; }
+      .card      { @apply bg-white border border-line rounded-lg shadow-card; }
 
-    :root {
-      --red: #FF3131;
-      --blue: #1800AD;
-      --yellow: #FEC107;
-      --ink: #1a1a1a;
-      --muted: #626262;
-      --soft: #f7f7f9;
-      --soft-2: #eeeeF4;
-      --white: #ffffff;
-      --border: #dedee8;
-      --shadow: 0 16px 40px rgba(26, 26, 26, 0.08);
-      --shadow-sm: 0 8px 24px rgba(26, 26, 26, 0.06);
-      --radius: 8px;
-      --transition: 180ms ease;
-      --header-height: 70px;
-    }
+      .eyebrow   { @apply inline-flex items-center gap-2.5 mb-2 text-blue text-[0.7rem] sm:text-xs font-extrabold tracking-[0.08em] uppercase before:content-[''] before:w-6 before:h-[3px] before:bg-yellow before:rounded-full before:shrink-0; }
 
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-    }
+      .title-xl  { @apply font-display font-bold text-blue leading-[1.1] text-[2.2rem] sm:text-[clamp(2.6rem,6vw,3.6rem)]; }
+      .title-lg  { @apply font-display font-bold text-blue leading-[1.2] text-[1.25rem] sm:text-[1.45rem] tab:text-[1.6rem]; }
+      .title-md  { @apply font-display font-bold text-blue leading-[1.25] text-[1rem] sm:text-[1.12rem]; }
+      .lead      { @apply mt-2.5 text-muted text-[0.9rem] sm:text-[0.95rem] leading-[1.65]; }
 
-    html {
-      scroll-behavior: smooth;
-      -webkit-text-size-adjust: 100%;
-    }
+      .btn       { @apply inline-flex items-center justify-center gap-2 min-h-[40px] sm:min-h-[44px] px-4 py-2 sm:px-5 sm:py-2.5 border-2 border-transparent rounded-lg font-extrabold text-[0.85rem] sm:text-[0.9rem] text-center cursor-pointer transition duration-[180ms] hover:-translate-y-0.5 hover:shadow-card active:translate-y-0; }
+      .btn-red   { @apply bg-red text-white border-red; }
+      .btn-blue  { @apply bg-blue text-white border-blue; }
+      .btn-outline { @apply bg-white text-blue border-blue hover:bg-blue hover:text-white; }
 
-    body {
-      margin: 0;
-      font-family: 'Inter', Arial, sans-serif;
-      color: var(--ink);
-      background-color: var(--white);
-      background-image:
-        linear-gradient(rgba(24, 0, 173, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(24, 0, 173, 0.04) 1px, transparent 1px);
-      background-size: 36px 36px;
-      background-position: center top;
-      line-height: 1.65;
-      overflow-x: hidden;
-    }
+      .nav-link  { @apply relative block nav:inline py-3 nav:py-1.5 text-base nav:text-[0.85rem] font-extrabold text-ink whitespace-normal nav:whitespace-nowrap hover:text-blue [&.active]:text-blue after:content-[''] after:absolute after:inset-x-0 after:bottom-0 after:h-[3px] after:bg-red after:scale-x-0 after:origin-left after:transition-transform after:duration-[180ms] hover:after:scale-x-100 [&.active]:after:scale-x-100; }
 
-    body.nav-open {
-      overflow: hidden;
-    }
+      .section-head { @apply flex items-end justify-between gap-4 nav:gap-8 mb-6 sm:mb-9; }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+      .tech-stack-card { @apply p-4 sm:p-5 bg-white rounded-lg border border-line shadow-card; }
+      .tech-stack-title { @apply mb-3.5 text-xs font-extrabold uppercase tracking-[0.08em] text-muted; }
+      .tech-item { @apply px-3.5 py-1.5 rounded-full bg-soft text-ink text-[0.78rem] font-bold transition duration-[180ms] hover:-translate-y-0.5 hover:shadow-card; }
 
-    img {
-      display: block;
-      max-width: 100%;
-      height: auto;
-    }
+      .tag       { @apply px-[7px] py-0.5 rounded bg-soft text-blue text-[0.68rem] font-bold tracking-[0.02em]; }
 
-    button,
-    input,
-    textarea {
-      font: inherit;
-    }
+      .skill-tile { @apply grid place-items-center w-11 h-11 sm:w-12 sm:h-12 p-2.5 rounded-xl bg-soft/70 border border-line/80 transition duration-200 hover:-translate-y-0.5 hover:shadow-card hover:border-blue/30 hover:bg-white; }
+      .skill-tile img, .skill-tile svg { @apply w-6 h-6 object-contain select-none; }
 
-    .container {
-      width: min(1120px, calc(100% - 32px));
-      margin: 0 auto;
-    }
+      .activity-card { @apply shrink-0 w-[150px] xs:w-[170px] sm:w-[200px] nav:w-[240px] overflow-hidden border border-line rounded-lg bg-white shadow-card; }
+      .activity-thumb { @apply h-[100px] xs:h-[110px] sm:h-[130px] nav:h-[150px] overflow-hidden bg-soft border-b border-line; }
+      .activity-thumb img { @apply w-full h-full object-cover transition-transform duration-[400ms] group-hover/act:scale-[1.12]; }
+      .activity-body { @apply grid gap-1.5 px-3 py-2.5 sm:px-3.5 sm:py-3; }
+      .activity-title { @apply font-display font-bold text-blue leading-[1.35] text-[0.8rem] sm:text-[0.85rem]; }
+      .activity-desc { @apply text-[0.78rem] leading-normal text-muted; }
 
-    .section {
-      padding: 60px 0;
-      scroll-margin-top: 92px;
-    }
+      .stat      { @apply px-3 py-2.5 sm:px-3.5 sm:py-3 border-l-4 border-yellow bg-soft rounded-lg; }
+      .stat strong { @apply block font-display text-[1.1rem] sm:text-[1.3rem] leading-none text-blue; }
+      .stat span { @apply block mt-1 text-[0.75rem] font-bold text-muted; }
 
-    .section-soft {
-      background: var(--soft);
-    }
+      .info-row  { @apply grid grid-cols-1 gap-0.5 sm:grid-cols-[100px_1fr] sm:gap-3 pb-2 border-b border-line text-[0.9rem] text-muted; }
+      .info-row strong { @apply text-blue; }
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin: 0 0 8px;
-      color: var(--blue);
-      font-size: 0.75rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
+      .project-card  { @apply flex flex-col overflow-hidden bg-white border border-line rounded-lg shrink-0 snap-start basis-full sm:basis-[calc((100%-16px)/2)] lg:basis-[calc((100%-32px)/3)] transition duration-[180ms] hover:-translate-y-[3px] hover:shadow-lift; }
+      .project-thumb { @apply relative h-[150px] sm:h-[135px] overflow-hidden bg-soft border-b border-line cursor-zoom-in; }
+      .project-thumb img { @apply w-full h-full object-cover bg-white transition-transform duration-300 group-hover/card:scale-105; }
+      .zoom-hint     { @apply absolute bottom-2 right-2 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-ink/75 text-white text-[0.7rem] font-semibold leading-none tracking-wide backdrop-blur-sm pointer-events-none transition-opacity duration-[180ms] opacity-90 sm:opacity-0 sm:group-hover/thumb:opacity-100 before:content-['⤢'] before:text-[0.85rem]; }
+      .project-body  { @apply flex flex-col flex-1 px-3.5 pt-3 pb-3.5 sm:px-[15px] sm:pt-[13px] sm:pb-[15px]; }
+      .project-title { @apply font-display text-[0.95rem] font-bold leading-[1.35] text-ink; }
+      .project-desc  { @apply text-[0.8rem] leading-normal text-muted; }
 
-    .eyebrow::before {
-      content: '';
-      width: 24px;
-      height: 3px;
-      background: var(--yellow);
-      border-radius: 999px;
-      flex-shrink: 0;
-    }
+      .skill-card     { @apply flex flex-col p-4 sm:px-[18px] transition duration-[180ms] hover:-translate-y-0.5 hover:shadow-lift; }
+      .skill-header   { @apply flex items-center gap-2 mb-3; }
+      .skill-dot      { @apply w-2 h-2 rounded-full shrink-0; }
+      .skill-category { @apply font-display text-[0.85rem] font-bold tracking-[0.02em] text-ink; }
 
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 32px;
-      margin-bottom: 36px;
-    }
+      .contact-item { @apply flex items-center gap-2.5 text-[0.85rem] sm:text-[0.9rem] font-bold text-muted break-words; }
+      .contact-mark { @apply grid place-items-center shrink-0 w-[26px] h-[26px] sm:w-[30px] sm:h-[30px] rounded-lg bg-blue text-white text-[0.65rem] sm:text-[0.7rem] font-black; }
 
-    .section-head.center {
-      display: block;
-      max-width: 600px;
-      margin: 0 auto 36px;
-      text-align: center;
-    }
+      .footer-title { @apply mb-2.5 font-display text-[0.72rem] font-extrabold uppercase tracking-[0.06em] text-white opacity-[0.65]; }
+      .footer-link  { @apply text-[0.85rem] text-white hover:text-yellow; }
 
-    .section-head.center .eyebrow {
-      justify-content: center;
-    }
-
-    .title-xl,
-    .title-lg,
-    .title-md {
-      font-family: 'Sora', Arial, sans-serif;
-      color: var(--blue);
-      line-height: 1.1;
-      margin: 0;
-    }
-
-    .title-xl {
-      font-size: clamp(2.4rem, 10vw, 5rem);
-    }
-
-    .title-lg {
-      font-size: clamp(1.5rem, 5vw, 2.5rem);
-    }
-
-    .title-md {
-      font-size: clamp(1rem, 2.5vw, 1.4rem);
-    }
-
-    .lead {
-      color: var(--muted);
-      font-size: clamp(0.95rem, 2vw, 1.05rem);
-      margin: 12px 0 0;
-    }
-
-    .text-blue {
-      color: var(--blue);
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      min-height: 32px;
-      padding: 5px 12px;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      background: var(--white);
-      color: var(--ink);
-      font-size: 0.78rem;
-      font-weight: 700;
-    }
-
-    .pill-yellow {
-      background: var(--yellow);
-      border-color: var(--yellow);
-    }
-
-    .pill-red {
-      background: var(--red);
-      border-color: var(--red);
-      color: var(--white);
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-height: 44px;
-      padding: 10px 20px;
-      border: 2px solid transparent;
-      border-radius: var(--radius);
-      font-weight: 800;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition);
-      text-align: center;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .btn:active {
-      transform: translateY(0);
-    }
-
-    .btn-red {
-      background: var(--red);
-      color: var(--white);
-      border-color: var(--red);
-    }
-
-    .btn-blue {
-      background: var(--blue);
-      color: var(--white);
-      border-color: var(--blue);
-    }
-
-    .btn-outline {
-      background: var(--white);
-      color: var(--blue);
-      border-color: var(--blue);
-    }
-
-    .btn-outline:hover {
-      background: var(--blue);
-      color: var(--white);
-    }
-
-    .card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
-    }
-
-    /* ===== TECH STACK CARD (HERO) ===== */
-    .tech-stack-card {
-      padding: 20px;
-      background: var(--white);
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .tech-stack-title {
-      font-size: 0.75rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      margin: 0 0 14px;
-    }
-
-    .tech-stack-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .tech-item {
-      padding: 6px 14px;
-      border-radius: 999px;
-      background: var(--soft);
-      color: var(--ink);
-      font-size: 0.78rem;
-      font-weight: 700;
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-
-    .tech-item:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .tech-item.laravel {
-      background: #ff2d20;
-      color: #fff;
-    }
-
-    .tech-item.tailwind {
-      background: #06b6d4;
-      color: #fff;
-    }
-
-    .tech-item.figma {
-      background: #a259ff;
-      color: #fff;
-    }
-
-    .tech-item.mysql {
-      background: #00758f;
-      color: #fff;
-    }
-
-    .tech-item.php {
-      background: #777bb4;
-      color: #fff;
-    }
-
-    .tech-item.javascript {
-      background: #f7df1e;
-      color: #1a1a1a;
-    }
-
-    .tech-stack-note {
-      font-size: 0.7rem;
-      color: var(--muted);
-      margin: 12px 0 0;
-      font-weight: 600;
-    }
-
-    /* ===== SKILL ITEMS ===== */
-    .skill-items {
-      list-style: none;
-      padding: 0;
-      margin: 12px 0 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .skill-items li {
-      padding: 4px 12px;
-      border-radius: 4px;
-      background: var(--soft);
-      color: var(--ink);
-      font-size: 0.82rem;
-      font-weight: 600;
-    }
-
-    /* Header */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(255, 255, 255, 0.94);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: var(--header-height);
-      gap: 12px;
-    }
-
-    .brand {
-      display: flex;
-      flex-direction: column;
-      color: var(--blue);
-      font-family: 'Sora', Arial, sans-serif;
-      font-weight: 800;
-      line-height: 1;
-      flex-shrink: 0;
-    }
-
-    .brand span {
-      margin-top: 2px;
-      color: var(--muted);
-      font-family: 'Inter', Arial, sans-serif;
-      font-size: 0.7rem;
-      font-weight: 700;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .nav-links a {
-      position: relative;
-      color: var(--ink);
-      font-size: 0.85rem;
-      font-weight: 800;
-      padding: 6px 0;
-      white-space: nowrap;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 3px;
-      background: var(--red);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform var(--transition);
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--blue);
-    }
-
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      transform: scaleX(1);
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-shrink: 0;
-    }
-
-    .language-toggle {
-      display: inline-flex;
-      padding: 3px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: var(--soft);
-    }
-
-    .language-toggle button {
-      border: 0;
-      border-radius: 4px;
-      padding: 5px 10px;
-      background: transparent;
-      color: var(--muted);
-      font-size: 0.7rem;
-      font-weight: 800;
-      cursor: pointer;
-      transition: background var(--transition), color var(--transition);
-    }
-
-    .language-toggle button.active {
-      background: var(--blue);
-      color: var(--white);
-    }
-
-    .menu-toggle {
-      display: none;
-      width: 40px;
-      height: 40px;
-      border: 2px solid var(--blue);
-      border-radius: var(--radius);
-      background: var(--white);
-      color: var(--blue);
-      font-weight: 900;
-      font-size: 1.4rem;
-      cursor: pointer;
-      flex-shrink: 0;
-      line-height: 1;
-    }
-
-    /* Hero */
-    .hero {
-      padding: 60px 0 40px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.04fr 0.96fr;
-      align-items: center;
-      gap: 40px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 24px;
-    }
-
-    .hero-actions .btn {
-      min-width: 140px;
-    }
-
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 28px;
-    }
-
-    .stat {
-      border-left: 4px solid var(--yellow);
-      padding: 12px 14px;
-      background: var(--soft);
-      border-radius: var(--radius);
-    }
-
-    .stat strong {
-      display: block;
-      color: var(--blue);
-      font-family: 'Sora', Arial, sans-serif;
-      font-size: 1.3rem;
-      line-height: 1;
-    }
-
-    .stat span {
-      display: block;
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 0.75rem;
-      font-weight: 700;
-    }
-
-    .hero-panel {
-      padding: 0;
-      border: none;
-      background: transparent;
-      box-shadow: none;
-    }
-
-    /* Tech Stack Mobile - tersembunyi di desktop */
-    .hero-tech-stack-mobile {
-      display: none;
-    }
-
-    /* About */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 30px;
-      align-items: start;
-    }
-
-    .profile-card {
-      padding: 24px;
-    }
-
-    .avatar-photo {
-      width: 112px;
-      height: 112px;
-      margin-bottom: 18px;
-      border: 4px solid var(--yellow);
-      border-radius: 50%;
-      overflow: hidden;
-      background: var(--soft);
-      flex-shrink: 0;
-    }
-
-    .avatar-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .avatar-initials {
-      display: none;
-      width: 100%;
-      height: 100%;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Sora', Arial, sans-serif;
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: var(--blue);
-      background: var(--soft);
-    }
-
-    .avatar-photo.avatar-fallback .avatar-initials {
-      display: flex;
-    }
-
-    .info-list {
-      display: grid;
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .info-row {
-      display: grid;
-      grid-template-columns: 100px 1fr;
-      gap: 12px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .info-row strong {
-      color: var(--blue);
-    }
-
-    .about-copy {
-      padding: 24px;
-    }
-
-    .studio-callout {
-      margin-top: 18px;
-      padding: 18px 20px;
-      border: 2px solid var(--blue);
-      border-left: 6px solid var(--red);
-      border-radius: var(--radius);
-      background: var(--white);
-    }
-
-    .stack-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 16px;
-    }
-
-    /* Projects - Compact & Sleek */
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .project-card {
-      overflow: hidden;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      transition: transform var(--transition), box-shadow var(--transition);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .project-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow);
-    }
-
-    .project-thumb {
-      position: relative;
-      height: 135px;
-      padding: 0;
-      overflow: hidden;
-      background: var(--soft);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .project-thumb.zoomable {
-      cursor: zoom-in;
-    }
-
-    .zoom-hint {
-      position: absolute;
-      bottom: 8px;
-      right: 8px;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      background: rgba(26, 26, 26, 0.78);
-      color: #fff;
-      font-size: 0.68rem;
-      font-weight: 600;
-      opacity: 0;
-      transition: opacity var(--transition);
-      pointer-events: none;
-      backdrop-filter: blur(4px);
-    }
-
-    .project-thumb.zoomable:hover .zoom-hint {
-      opacity: 1;
-    }
-
-    .project-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      border: none;
-      border-radius: 0;
-      background: var(--white);
-      transition: transform 300ms ease;
-    }
-
-    .project-card:hover img {
-      transform: scale(1.05);
-    }
-
-    .project-body {
-      padding: 13px 15px 15px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .project-body .title-md {
-      font-size: 0.95rem;
-      font-weight: 700;
-      margin: 0;
-      line-height: 1.35;
-      color: var(--ink);
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-      margin: 7px 0 8px;
-    }
-
-    .tag {
-      padding: 2px 7px;
-      border-radius: 4px;
-      background: var(--soft);
-      color: var(--blue);
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
-
-    .tag.red {
-      color: var(--red);
-    }
-
-    .tag.yellow {
-      background: var(--yellow);
-      color: var(--ink);
-    }
-
-    .project-body p {
-      font-size: 0.8rem;
-      line-height: 1.5;
-      color: var(--muted);
-      margin: 0;
-    }
-
-    /* Kegiatan */
-    .activity-marquee {
-      position: relative;
-      margin-top: 8px;
-      overflow: hidden;
-      -webkit-mask-image: linear-gradient(to right, transparent 0, black 48px, black calc(100% - 48px), transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0, black 48px, black calc(100% - 48px), transparent 100%);
-    }
-
-    .activity-track {
-      display: flex;
-      gap: 18px;
-      width: max-content;
-      animation: activity-marquee-scroll 32s linear infinite;
-    }
-
-    .activity-marquee:hover .activity-track {
-      animation-play-state: paused;
-    }
-
-    @keyframes activity-marquee-scroll {
-      from {
-        transform: translateX(0);
-      }
-
-      to {
-        transform: translateX(-50%);
-      }
-    }
-
-    .activity-card {
-      flex: 0 0 auto;
-      width: 240px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: var(--white);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .activity-thumb {
-      height: 150px;
-      overflow: hidden;
-      background: var(--soft);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .activity-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 400ms ease;
-    }
-
-    .activity-card:hover .activity-thumb img {
-      transform: scale(1.12);
-    }
-
-    .activity-body {
-      padding: 12px 14px;
-      display: grid;
-      gap: 6px;
-    }
-
-    .title-sm {
-      margin: 0;
-      color: var(--blue);
-      font-family: 'Sora', Arial, sans-serif;
-      font-size: 0.85rem;
-      font-weight: 700;
-      line-height: 1.35;
-    }
-
-    .activity-desc {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.78rem;
-      line-height: 1.5;
-    }
-
-    /* Skills - Seamless & Compact */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-
-    .skill-card {
-      padding: 16px 18px;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
-      transition: transform var(--transition), box-shadow var(--transition);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .skill-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow);
-    }
-
-    .skill-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-
-    .skill-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .skill-dot.red { background: var(--red); }
-    .skill-dot.blue { background: var(--blue); }
-    .skill-dot.yellow { background: var(--yellow); }
-    .skill-dot.purple { background: #8b5cf6; }
-
-    .skill-category {
-      margin: 0;
-      font-family: 'Sora', Arial, sans-serif;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--ink);
-      letter-spacing: 0.02em;
-    }
-
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .skill-pill {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: var(--soft);
-      border: 1px solid var(--border);
-      color: var(--ink);
-      font-size: 0.75rem;
-      font-weight: 600;
-      transition: all var(--transition);
-      line-height: 1.4;
-    }
-
-    .skill-pill:hover {
-      background: var(--white);
-      border-color: var(--blue);
-      color: var(--blue);
-      transform: translateY(-1px);
-    }
-
-    .skill-pill.highlight {
-      background: rgba(24, 0, 173, 0.06);
-      border-color: rgba(24, 0, 173, 0.2);
-      color: var(--blue);
-    }
-
-    /* Contact */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
-      gap: 28px;
-    }
-
-    .contact-panel,
-    .form-card {
-      padding: 24px;
-    }
-
-    .contact-list {
-      display: grid;
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--muted);
-      font-weight: 700;
-      font-size: 0.9rem;
-      word-break: break-word;
-    }
-
-    .contact-mark {
-      width: 30px;
-      height: 30px;
-      display: grid;
-      place-items: center;
-      flex: 0 0 auto;
-      border-radius: var(--radius);
-      background: var(--blue);
-      color: var(--white);
-      font-size: 0.7rem;
-      font-weight: 900;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-
-    .field {
-      display: grid;
-      gap: 6px;
-    }
-
-    .field.full {
-      grid-column: 1 / -1;
-    }
-
-    .field label {
-      color: var(--blue);
-      font-size: 0.8rem;
-      font-weight: 800;
-    }
-
-    .field input,
-    .field textarea {
-      width: 100%;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 10px 12px;
-      background: var(--white);
-      color: var(--ink);
-      outline: none;
-      transition: border-color var(--transition), box-shadow var(--transition);
-      font-size: 0.9rem;
-    }
-
-    .field textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
-
-    .field input:focus,
-    .field textarea:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px rgba(24, 0, 173, 0.10);
-    }
-
-    .form-message {
-      display: none;
-      margin-top: 12px;
-      padding: 10px 14px;
-      border-radius: var(--radius);
-      color: var(--ink);
-      background: var(--yellow);
-      font-weight: 800;
-    }
-
-    .form-message.show {
-      display: block;
-    }
-
-    /* Footer */
-    .footer {
-      padding: 48px 0 20px;
-      background: var(--blue);
-      color: var(--white);
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 0.8fr 1fr;
-      gap: 24px;
-    }
-
-    .footer h2 {
-      margin: 0 0 8px;
-      color: var(--white);
-      font-family: 'Sora', Arial, sans-serif;
-      font-size: 1.3rem;
-    }
-
-    .footer h3 {
-      margin: 0 0 10px;
-      color: var(--white);
-      font-family: 'Sora', Arial, sans-serif;
-      font-size: 0.72rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      opacity: 0.65;
-    }
-
-    .footer p,
-    .footer a,
-    .footer span {
-      color: var(--white);
-      font-size: 0.85rem;
-    }
-
-    .footer p {
-      opacity: 0.8;
-      margin: 0;
-    }
-
-    .footer a:hover {
-      color: var(--yellow);
-    }
-
-    .footer-links {
-      display: grid;
-      gap: 8px;
-    }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      margin-top: 24px;
-      padding-top: 14px;
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
-      font-size: 0.75rem;
-      opacity: 0.85;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 520ms ease, transform 520ms ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ===== Lightbox / Zoom Preview ===== */
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 200;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 20px;
-      background: rgba(10, 10, 20, 0.86);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-    }
-
-    .lightbox.open {
-      display: flex;
-    }
-
-    .lightbox-frame {
-      max-width: min(920px, 100%);
-      max-height: 100%;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .lightbox-frame img {
-      max-width: 100%;
-      max-height: 78vh;
-      border-radius: var(--radius);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
-      background: var(--white);
-    }
-
-    .lightbox-frame figcaption {
-      color: var(--white);
-      font-family: 'Sora', Arial, sans-serif;
-      font-weight: 700;
-      font-size: 0.95rem;
-      text-align: center;
-    }
-
-    .lightbox-close {
-      position: absolute;
-      top: 20px;
-      right: 24px;
-      width: 42px;
-      height: 42px;
-      border: 2px solid var(--white);
-      border-radius: 50%;
-      background: transparent;
-      color: var(--white);
-      font-size: 1.5rem;
-      line-height: 1;
-      cursor: pointer;
-      transition: background var(--transition), color var(--transition);
-    }
-
-    .lightbox-close:hover {
-      background: var(--white);
-      color: var(--ink);
-    }
-
-    /* =====================================================
-       RESPONSIVE BREAKPOINTS
-       ===================================================== */
-
-    @media (max-width: 1024px) {
-      .project-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 900px) {
-
-      .hero-grid,
-      .about-grid,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        padding: 40px 0 30px;
-      }
-
-      .hero-grid {
-        gap: 30px;
-      }
-
-      /* SEMBUNYIKAN tech stack di samping kanan pada mobile */
-      .hero-panel {
-        display: none !important;
-      }
-
-      /* TAMPILKAN tech stack mobile di bawah stats */
-      .hero-tech-stack-mobile {
-        display: block !important;
-        margin-top: 28px;
-      }
-
-      .hero-tech-stack-mobile .tech-stack-card {
-        padding: 20px 24px;
-        background: var(--soft);
-        border: 2px solid var(--border);
-        border-radius: var(--radius);
-      }
-
-      .hero-stats {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .about-grid {
-        gap: 20px;
-      }
-
-      .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 30px;
-      }
-    }
-
-    @media (max-width: 820px) {
-      .container {
-        width: min(100% - 24px, 1120px);
-      }
-
-      .section {
-        padding: 48px 0;
-      }
-
-      .menu-toggle {
-        display: inline-grid;
-        place-items: center;
-      }
-
-      .nav-links {
-        position: fixed;
-        inset: var(--header-height) 0 auto 0;
-        display: none;
-        max-height: calc(100vh - var(--header-height));
-        overflow-y: auto;
-        padding: 16px 20px 24px;
-        border-bottom: 1px solid var(--border);
-        background: var(--white);
-        box-shadow: var(--shadow);
-        flex-direction: column;
-        align-items: stretch;
-        gap: 2px;
-      }
-
-      .nav-links.open {
-        display: flex;
-      }
-
-      .nav-links a {
-        display: block;
-        padding: 12px 0;
-        font-size: 1rem;
-        white-space: normal;
-      }
-
-      .section-head,
-      .instagram-callout {
-        display: block;
-      }
-
-      .instagram-callout .btn {
-        margin-top: 12px;
-      }
-
-      .project-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-      }
-
-      .activity-card {
-        width: 200px;
-      }
-
-      .activity-thumb {
-        height: 130px;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .container {
-        width: min(100% - 20px, 1120px);
-      }
-
-      .section {
-        padding: 40px 0;
-      }
-
-      .nav {
-        min-height: 60px;
-        gap: 8px;
-      }
-
-      .brand span {
-        display: none;
-      }
-
-      .brand {
-        font-size: 0.95rem;
-      }
-
-      .nav-links {
-        top: 60px;
-        max-height: calc(100vh - 60px);
-      }
-
-      .language-toggle button {
-        padding: 4px 8px;
-        font-size: 0.65rem;
-      }
-
-      .menu-toggle {
-        width: 36px;
-        height: 36px;
-        font-size: 1.2rem;
-      }
-
-      .hero-stats {
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 8px;
-      }
-
-      .stat {
-        padding: 10px 12px;
-      }
-
-      .stat strong {
-        font-size: 1.1rem;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .hero-actions .btn {
-        min-width: unset;
-        width: 100%;
-        justify-content: center;
-      }
-
-      .hero-tech-stack-mobile .tech-stack-card {
-        padding: 16px;
-      }
-
-      .hero-tech-stack-mobile .tech-stack-grid {
-        gap: 6px;
-      }
-
-      .hero-tech-stack-mobile .tech-item {
-        font-size: 0.7rem;
-        padding: 4px 10px;
-      }
-
-      .project-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-
-      .skills-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-
-      .contact-grid {
-        gap: 20px;
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .field.full {
-        grid-column: auto;
-      }
-
-      .profile-card,
-      .about-copy,
-      .contact-panel,
-      .form-card {
-        padding: 18px;
-      }
-
-      .info-row {
-        grid-template-columns: 1fr;
-        gap: 2px;
-      }
-
-      .tech-stack-card {
-        padding: 16px;
-      }
-
-      .activity-card {
-        width: 170px;
-      }
-
-      .activity-thumb {
-        height: 110px;
-      }
-
-      .activity-body {
-        padding: 10px 12px;
-      }
-
-      .title-sm {
-        font-size: 0.8rem;
-      }
-
-      .lightbox {
-        padding: 20px 12px;
-      }
-
-      .lightbox-close {
-        top: 12px;
-        right: 12px;
-        width: 36px;
-        height: 36px;
-        font-size: 1.2rem;
-      }
-
-      .lightbox-frame img {
-        max-height: 60vh;
-      }
-
-      .section-head {
-        margin-bottom: 24px;
-      }
-
-      .reveal {
-        transform: translateY(12px);
-      }
-
-      .btn {
-        min-height: 40px;
-        padding: 8px 16px;
-        font-size: 0.85rem;
-      }
-
-      .project-card img {
-        height: 150px;
-      }
-
-      .project-thumb {
-        min-height: 150px;
-        padding: 12px;
-      }
-
-      .zoom-hint {
-        inset: 12px;
-        font-size: 0.75rem;
-      }
-
-      .project-body {
-        padding: 14px 16px;
-      }
-
-      .skill-card {
-        padding: 16px;
-      }
-
-      .skill-items li {
-        font-size: 0.78rem;
-        padding: 3px 10px;
-      }
-
-      .pill {
-        font-size: 0.7rem;
-        padding: 4px 10px;
-        min-height: 28px;
-      }
-
-      .tool-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-        margin-top: 16px;
-      }
-
-      .contact-item {
-        font-size: 0.85rem;
-      }
-
-      .contact-mark {
-        width: 26px;
-        height: 26px;
-        font-size: 0.65rem;
-      }
-
-      .eyebrow {
-        font-size: 0.7rem;
-      }
-    }
-
-    @media (max-width: 400px) {
-      .container {
-        width: min(100% - 16px, 1120px);
-      }
-
-      .hero-stats {
-        grid-template-columns: 1fr;
-      }
-
-      .activity-card {
-        width: 150px;
-      }
-
-      .activity-thumb {
-        height: 100px;
-      }
-
-      .title-xl {
-        font-size: 2rem;
-      }
-
-      .title-lg {
-        font-size: 1.3rem;
-      }
-
-      .language-toggle button {
-        padding: 3px 6px;
-        font-size: 0.6rem;
-      }
-
-      .nav-actions {
-        gap: 4px;
-      }
-
-      .menu-toggle {
-        width: 32px;
-        height: 32px;
-        font-size: 1rem;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-
-      .activity-track {
-        animation: none;
-      }
-
-      .reveal {
-        opacity: 1;
-        transform: none;
-      }
+      .field-label { @apply text-blue text-[0.8rem] font-extrabold; }
+      .field-input { @apply w-full border border-line rounded-lg px-3 py-2.5 bg-white text-ink text-[0.9rem] outline-none transition duration-[180ms] focus:border-blue focus:shadow-[0_0_0_3px_rgba(24,0,173,0.1)]; }
     }
   </style>
 </head>
 
-<body>
-  <header class="site-header">
-    <nav class="nav container">
-      <a class="brand" href="#beranda">
+<body class="font-sans text-ink leading-[1.65] overflow-x-hidden">
+  <header class="sticky top-0 z-50 bg-white/95 border-b border-line backdrop-blur-[14px]">
+    <nav class="wrap flex items-center justify-between gap-2 sm:gap-3 min-h-[60px] sm:min-h-[70px]">
+      <a class="flex flex-col shrink-0 font-display font-extrabold leading-none text-blue text-[0.95rem] sm:text-base"
+        href="#beranda">
         Salsabila
-        <span>Salsabila Nur Aisyah</span>
+        <span class="hidden sm:block mt-0.5 font-sans text-[0.7rem] font-bold text-muted">Salsabila Nur Aisyah</span>
       </a>
 
-      <ul class="nav-links" id="navLinks">
-        <li><a class="active" href="#beranda" data-i18n="nav.home">Beranda</a></li>
-        <li><a href="#tentang" data-i18n="nav.about">Tentang</a></li>
-        <li><a href="#project" data-i18n="nav.project">Project</a></li>
-        <li><a href="#kegiatan">Kegiatan</a></li>
-        <li><a href="#skill" data-i18n="nav.skills">Skill</a></li>
-        <li><a href="#kontak" data-i18n="nav.contact">Kontak</a></li>
+      <ul class="nav-links hidden nav:flex flex-col nav:flex-row items-stretch nav:items-center gap-0.5 nav:gap-4 fixed nav:static inset-x-0 top-[60px] sm:top-[70px] max-h-[calc(100vh-60px)] sm:max-h-[calc(100vh-70px)] nav:max-h-none overflow-y-auto nav:overflow-visible px-5 pt-4 pb-6 nav:p-0 bg-white nav:bg-transparent border-b border-line nav:border-0 shadow-lift nav:shadow-none"
+        id="navLinks">
+        <li><a class="nav-link active" href="#beranda" data-i18n="nav.home">Beranda</a></li>
+        <li><a class="nav-link" href="#tentang" data-i18n="nav.about">Tentang</a></li>
+        <li><a class="nav-link" href="#project" data-i18n="nav.project">Project</a></li>
+        <li><a class="nav-link" href="#kegiatan">Kegiatan</a></li>
+        <li><a class="nav-link" href="#skill" data-i18n="nav.skills">Skill</a></li>
+        <li><a class="nav-link" href="#kontak" data-i18n="nav.contact">Kontak</a></li>
       </ul>
 
-      <div class="nav-actions">
-        <div class="language-toggle">
-          <button type="button" class="active" data-lang="id">ID</button>
-          <button type="button" data-lang="en">EN</button>
+      <div class="flex items-center gap-1 xs:gap-2 shrink-0">
+        <div class="inline-flex p-[3px] border border-line rounded-lg bg-soft">
+          <button type="button" data-lang="id"
+            class="active px-1.5 py-[3px] xs:px-2 xs:py-1 sm:px-2.5 sm:py-[5px] rounded text-[0.6rem] xs:text-[0.65rem] sm:text-[0.7rem] font-extrabold text-muted cursor-pointer transition duration-[180ms] [&.active]:bg-blue [&.active]:text-white">ID</button>
+          <button type="button" data-lang="en"
+            class="px-1.5 py-[3px] xs:px-2 xs:py-1 sm:px-2.5 sm:py-[5px] rounded text-[0.6rem] xs:text-[0.65rem] sm:text-[0.7rem] font-extrabold text-muted cursor-pointer transition duration-[180ms] [&.active]:bg-blue [&.active]:text-white">EN</button>
         </div>
-        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menu">=</button>
+        <button id="menuToggle" type="button" aria-label="Menu"
+          class="grid nav:hidden place-items-center shrink-0 w-8 h-8 xs:w-9 xs:h-9 sm:w-10 sm:h-10 border-2 border-blue rounded-lg bg-white text-blue font-black leading-none text-base xs:text-[1.2rem] sm:text-[1.4rem] cursor-pointer">=</button>
       </div>
     </nav>
   </header>
 
   <main>
     <!-- HERO -->
-    <section class="hero" id="beranda">
-      <div class="container hero-grid">
-        <div class="hero-content reveal">
+    <section class="pt-10 pb-[30px] tab:pt-[60px] tab:pb-10" id="beranda">
+      <div class="wrap grid items-center gap-[30px] tab:gap-10 tab:grid-cols-[1.04fr_0.96fr]">
+        <div class="reveal">
           <p class="eyebrow" data-i18n="hero.eyebrow">Portfolio</p>
           <h1 class="title-xl">Salsabila</h1>
           <h2 class="title-lg" data-i18n="hero.tagline">Web Developer.</h2>
-          <p class="lead" data-i18n="hero.intro">Berpengalaman bikin aplikasi web pakai Laravel, Tailwind CSS, dan
-            MySQL. Cepat belajar, disiplin, dan suka ngurusin detail.</p>
+          <p class="lead" data-i18n="hero.intro">Membangun aplikasi web yang rapi dan fungsional dengan Laravel, Tailwind CSS, dan MySQL. Senang mempelajari hal baru, disiplin, dan teliti hingga ke detail terkecil.</p>
 
-          <div class="hero-actions">
-            <a class="btn btn-red" href="#project" data-i18n="hero.ctaProject">Lihat Project</a>
-            <a class="btn btn-outline" href="#kontak" data-i18n="hero.ctaContact">Hubungi</a>
+          <div class="flex flex-col sm:flex-row sm:flex-wrap items-stretch gap-3 mt-6">
+            <a class="btn btn-red sm:min-w-[140px]" href="#project" data-i18n="hero.ctaProject">Lihat Project</a>
+            <a class="btn btn-outline sm:min-w-[140px]" href="#kontak" data-i18n="hero.ctaContact">Hubungi Saya</a>
           </div>
 
-          <div class="hero-stats">
-            <div class="stat"><strong>3+</strong><span data-i18n="hero.statProjects">Project</span></div>
-            <div class="stat"><strong>3</strong><span data-i18n="hero.statExperience">Pengalaman</span></div>
-            <div class="stat"><strong>2</strong><span>Tools</span></div>
+          <div class="grid grid-cols-1 xs:grid-cols-3 gap-2 sm:gap-3 mt-7">
+            <div class="stat">
+              <strong>3+</strong><span data-i18n="hero.statProjects">Project</span>
+            </div>
+            <div class="stat">
+              <strong>3</strong><span data-i18n="hero.statExperience">Pengalaman</span>
+            </div>
+            <div class="stat">
+              <strong>2</strong><span>Tools</span>
+            </div>
           </div>
         </div>
 
         <!-- TECH STACK - Desktop (di samping kanan) -->
-        <aside class="hero-panel reveal">
+        <aside class="hidden tab:block reveal">
           <div class="tech-stack-card">
             <h3 class="tech-stack-title">Tech Stack</h3>
-            <div class="tech-stack-grid">
-              <span class="tech-item php">PHP</span>
-              <span class="tech-item laravel">Laravel</span>
-              <span class="tech-item mysql">MySQL</span>
-              <span class="tech-item javascript">JavaScript</span>
-              <span class="tech-item tailwind">Tailwind</span>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-item bg-tech-php text-white">PHP</span>
+              <span class="tech-item bg-tech-laravel text-white">Laravel</span>
+              <span class="tech-item bg-tech-mysql text-white">MySQL</span>
+              <span class="tech-item bg-tech-js text-ink">JavaScript</span>
+              <span class="tech-item bg-tech-tailwind text-white">Tailwind</span>
               <span class="tech-item">HTML</span>
               <span class="tech-item">CSS</span>
-              <span class="tech-item figma">Figma</span>
+              <span class="tech-item bg-tech-figma text-white">Figma</span>
               <span class="tech-item">Git</span>
               <span class="tech-item">REST API</span>
             </div>
-            <p class="tech-stack-note">Stack utama yang saya pakai sehari-hari</p>
+            <p class="mt-3 text-[0.7rem] font-semibold text-muted">Teknologi utama yang saya gunakan sehari-hari</p>
           </div>
         </aside>
       </div>
 
       <!-- TECH STACK - Mobile (di bawah stats, hanya muncul di mobile) -->
-      <div class="hero-tech-stack-mobile reveal">
-        <div class="tech-stack-card">
+      <div class="tab:hidden mt-7 reveal">
+        <div class="tech-stack-card !bg-soft !border-2 sm:!px-6 sm:!py-5">
           <h3 class="tech-stack-title">Tech Stack</h3>
-          <div class="tech-stack-grid">
-            <span class="tech-item php">PHP</span>
-            <span class="tech-item laravel">Laravel</span>
-            <span class="tech-item mysql">MySQL</span>
-            <span class="tech-item javascript">JavaScript</span>
-            <span class="tech-item tailwind">Tailwind</span>
-            <span class="tech-item">HTML</span>
-            <span class="tech-item">CSS</span>
-            <span class="tech-item figma">Figma</span>
-            <span class="tech-item">Git</span>
-            <span class="tech-item">REST API</span>
+          <div class="flex flex-wrap gap-1.5 sm:gap-2">
+            <span class="tech-item max-sm:!text-[0.7rem] max-sm:!px-2.5 max-sm:!py-1 bg-tech-php text-white">PHP</span>
+            <span class="tech-item max-sm:!text-[0.7rem] max-sm:!px-2.5 max-sm:!py-1 bg-tech-laravel text-white">Laravel</span>
+            <span class="tech-item max-sm:!text-[0.7rem] max-sm:!px-2.5 max-sm:!py-1 bg-tech-mysql text-white">MySQL</span>
+            <span class="tech-item max-sm:!text-[0.7rem] max-sm:!px-2.5 max-sm:!py-1 bg-tech-js text-ink">JavaScript</span>
+            <span class="tech-item max-sm:!text-[0.7rem] max-sm:!px-2.5 max-sm:!py-1 bg-tech-tailwind text-white">Tailwind</span>
+            <span class="tech-item max-sm:!text-[0.7rem] max-sm:!px-2.5 max-sm:!py-1">HTML</span>
+            <span class="tech-item max-sm:!text-[0.7rem] max-sm:!px-2.5 max-sm:!py-1">CSS</span>
+            <span class="tech-item max-sm:!text-[0.7rem] max-sm:!px-2.5 max-sm:!py-1 bg-tech-figma text-white">Figma</span>
+            <span class="tech-item max-sm:!text-[0.7rem] max-sm:!px-2.5 max-sm:!py-1">Git</span>
+            <span class="tech-item max-sm:!text-[0.7rem] max-sm:!px-2.5 max-sm:!py-1">REST API</span>
           </div>
-          <p class="tech-stack-note">Stack utama yang saya pakai sehari-hari</p>
+          <p class="mt-3 text-[0.7rem] font-semibold text-muted">Teknologi utama yang saya gunakan sehari-hari</p>
         </div>
       </div>
     </section>
 
     <!-- TENTANG -->
-    <section class="section section-soft" id="tentang">
-      <div class="container about-grid">
-        <aside class="profile-card card reveal">
-          <div class="avatar-photo">
-            <img src="images/salsa.jpeg" alt="Salsabila" onerror="this.style.display='none'">
-          </div>
-          <h2 class="title-md">Salsabila Nur Aisyah</h2>
-          <p class="lead" data-i18n="hero.tagline">Web Developer</p>
-          <div class="info-list">
-            <div class="info-row"><strong data-i18n="about.locationLabel">Lokasi</strong><span
-                data-i18n="about.location">Depok</span></div>
-            <div class="info-row"><strong data-i18n="about.educationLabel">Pendidikan</strong><span
-                data-i18n="about.education">Sistem Informasi</span></div>
-            <div class="info-row"><strong data-i18n="about.linkedin">LinkedIn</strong><a
-                href="https://www.linkedin.com/in/salsabilanuraisyah/" class="text-blue">/in/salsabilanuraisyah</a>
+    <section class="section bg-soft" id="tentang">
+      <div class="wrap grid items-start gap-5 tab:gap-[30px] tab:grid-cols-[0.9fr_1.1fr]">
+        <aside class="card p-[18px] sm:p-6 reveal">
+          <div class="flex items-center justify-between gap-4 pb-4 border-b border-line">
+            <div class="min-w-0">
+              <h2 class="title-md">Salsabila Nur Aisyah</h2>
+              <p class="mt-0.5 text-[0.88rem] font-semibold text-muted" data-i18n="hero.tagline">Web Developer</p>
             </div>
-            <div class="info-row"><strong data-i18n="about.github">GitHub</strong><a
-                href="https://github.com/sallsabilanura" class="text-blue">sallsabilanura</a></div>
+            <div class="shrink-0 w-20 h-20 sm:w-24 sm:h-24 border-4 border-yellow rounded-full overflow-hidden bg-soft">
+              <img class="w-full h-full object-cover" src="images/salsa.jpeg" alt="Salsabila"
+                onerror="this.style.display='none'">
+            </div>
+          </div>
+          <div class="grid gap-2.5 mt-4">
+            <div class="info-row">
+              <strong data-i18n="about.locationLabel">Lokasi</strong>
+              <span data-i18n="about.location">Depok</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="about.educationLabel">Pendidikan</strong>
+              <span data-i18n="about.education">Sistem Informasi</span>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="about.linkedin">LinkedIn</strong>
+              <a href="https://www.linkedin.com/in/salsabilanuraisyah/" target="_blank" class="text-blue hover:underline">/in/salsabilanuraisyah</a>
+            </div>
+            <div class="info-row">
+              <strong data-i18n="about.github">GitHub</strong>
+              <a href="https://github.com/sallsabilanura" target="_blank" class="text-blue hover:underline">sallsabilanura</a>
+            </div>
           </div>
         </aside>
 
-        <div class="about-copy card reveal">
+        <div class="card p-[18px] sm:p-6 reveal">
           <p class="eyebrow" data-i18n="about.eyebrow">Tentang</p>
-          <h2 class="title-lg" data-i18n="about.title">Dari kode sampai produk berguna.</h2>
-          <p class="lead" data-i18n="about.bio">Berpengalaman bikin aplikasi web pakai Laravel, Tailwind CSS, dan MySQL.
-            Cepat belajar, disiplin, dan suka ngurusin detail.</p>
+          <h2 class="title-lg" data-i18n="about.title">Dari baris kode menjadi produk yang bermanfaat.</h2>
+          <p class="lead" data-i18n="about.bio">Berlatar belakang Sistem Informasi, saya fokus pada pengembangan web. Saya menikmati proses mengubah ide menjadi aplikasi yang nyaman digunakan, mulai dari merancang tampilan hingga mengelola database.</p>
 
-          <div class="studio-callout">
-            <p class="eyebrow" data-i18n="studio.eyebrow">Design Brand</p>
-            <h3 class="title-md">Korrastudio.id</h3>
-            <a class="btn btn-blue" href="https://instagram.com/korrastudio.id" target="_blank"
+          <!-- Tombol Follow di sebelah kanan teks -->
+          <div
+            class="flex items-center justify-between gap-4 mt-[18px] px-5 py-[18px] border-2 border-blue border-l-[6px] border-l-red rounded-lg bg-white">
+            <div class="min-w-0">
+              <p class="eyebrow" data-i18n="studio.eyebrow">Design Brand</p>
+              <h3 class="title-md">Korrastudio.id</h3>
+            </div>
+            <a class="btn btn-blue shrink-0" href="https://instagram.com/korrastudio.id" target="_blank"
               data-i18n="studio.button">Follow</a>
           </div>
         </div>
@@ -1684,103 +289,106 @@
 
     <!-- PROJECT -->
     <section class="section" id="project">
-      <div class="container">
+      <div class="wrap">
         <div class="section-head reveal">
           <div>
             <p class="eyebrow" data-i18n="projects.eyebrow">Project</p>
-            <h2 class="title-lg" data-i18n="projects.title">Karya terpilih.</h2>
+            <h2 class="title-lg" data-i18n="projects.title">Beberapa karya pilihan.</h2>
+          </div>
+          <div class="flex gap-2 shrink-0">
+            <button id="sliderPrev" type="button" aria-label="Sebelumnya"
+              class="grid place-items-center w-10 h-10 border-2 border-blue rounded-lg bg-white text-blue text-xl font-black leading-none cursor-pointer transition duration-[180ms] hover:bg-blue hover:text-white disabled:opacity-40 disabled:cursor-default disabled:hover:bg-white disabled:hover:text-blue">&#8249;</button>
+            <button id="sliderNext" type="button" aria-label="Berikutnya"
+              class="grid place-items-center w-10 h-10 border-2 border-blue rounded-lg bg-white text-blue text-xl font-black leading-none cursor-pointer transition duration-[180ms] hover:bg-blue hover:text-white disabled:opacity-40 disabled:cursor-default disabled:hover:bg-white disabled:hover:text-blue">&#8250;</button>
           </div>
         </div>
 
-        <div class="project-grid">
-          <article class="project-card card reveal">
-            <div class="project-thumb zoomable" data-caption="Manajemen Aset & Depresiasi">
+        <!-- Slider: geser kanan-kiri. 3 project per tampilan di desktop -->
+        <div id="projectSlider"
+          class="reveal flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth -mx-1 px-1 -my-2 py-2 scroll-px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <article class="project-card group/card">
+            <div class="project-thumb group/thumb" data-caption="Manajemen Aset & Depresiasi">
               <img src="images/asetku.png" alt="Manajemen Aset & Depresiasi" loading="lazy" />
-              <span class="zoom-hint">🔍 Klik untuk perbesar</span>
+              <span class="zoom-hint">Perbesar</span>
             </div>
             <div class="project-body">
-              <h3 class="title-md">Manajemen Aset & Depresiasi</h3>
-              <div class="tags">
-                <span class="tag red">Laravel</span>
+              <h3 class="project-title">Manajemen Aset & Depresiasi</h3>
+              <div class="flex flex-wrap gap-[5px] mt-[7px] mb-2">
+                <span class="tag text-red">Laravel</span>
                 <span class="tag">Tailwind</span>
-                <span class="tag yellow">MySQL</span>
+                <span class="tag !bg-yellow !text-ink">MySQL</span>
               </div>
-              <p>Sistem pendataan aset yang otomatis menghitung nilai depresiasi menggunakan metode garis lurus, lengkap
-                dengan laporan dan riwayat transaksi aset.</p>
-
+              <p class="project-desc">Sistem pendataan aset yang otomatis menghitung nilai depresiasi menggunakan metode
+                garis lurus, lengkap dengan laporan dan riwayat transaksi aset.</p>
             </div>
           </article>
 
-          <article class="project-card card reveal">
-            <div class="project-thumb zoomable" data-caption="Asuh bareng Management">
+          <article class="project-card group/card">
+            <div class="project-thumb group/thumb" data-caption="Asuh bareng Management">
               <img src="images/asuhbareng.png" alt="Asuhbareng Management" loading="lazy" />
-              <span class="zoom-hint">🔍 Klik untuk perbesar</span>
+              <span class="zoom-hint">Perbesar</span>
             </div>
             <div class="project-body">
-              <h3 class="title-md">Asuh bareng Management</h3>
-              <div class="tags">
-                <span class="tag red">Laravel</span>
-                <span class="tag yellow">MySQL</span>
+              <h3 class="project-title">Asuh bareng Management</h3>
+              <div class="flex flex-wrap gap-[5px] mt-[7px] mb-2">
+                <span class="tag text-red">Laravel</span>
+                <span class="tag !bg-yellow !text-ink">MySQL</span>
                 <span class="tag">JavaScript</span>
                 <span class="tag">Tailwind</span>
               </div>
-              <p>Aplikasi internal untuk mencatat absensi pendampingan, catatan kebaikan, serta mengatur hak akses Kakak
-                Asuh dan Admin secara terstruktur.</p>
-
+              <p class="project-desc">Aplikasi internal untuk mencatat absensi pendampingan, catatan kebaikan, serta
+                mengatur hak akses Kakak Asuh dan Admin secara terstruktur.</p>
             </div>
           </article>
 
-          <article class="project-card card reveal">
-            <div class="project-thumb zoomable" data-caption="Koskora Property">
+          <article class="project-card group/card">
+            <div class="project-thumb group/thumb" data-caption="Koskora Property">
               <img src="images/koskora.png" alt="Koskora Property" loading="lazy" />
-              <span class="zoom-hint">🔍 Klik untuk perbesar</span>
+              <span class="zoom-hint">Perbesar</span>
             </div>
             <div class="project-body">
-              <h3 class="title-md">Koskora Property</h3>
-              <div class="tags">
+              <h3 class="project-title">Koskora Property</h3>
+              <div class="flex flex-wrap gap-[5px] mt-[7px] mb-2">
                 <span class="tag">PHP</span>
-                <span class="tag yellow">MySQL</span>
+                <span class="tag !bg-yellow !text-ink">MySQL</span>
                 <span class="tag">Tailwind</span>
               </div>
-              <p>Sistem manajemen kos dan properti yang mencakup pengelolaan penyewa dan tagihan, termasuk layanan
-                laundry dan cleaning dari mitra.</p>
-
+              <p class="project-desc">Sistem manajemen kos dan properti yang mencakup pengelolaan penyewa dan tagihan,
+                termasuk layanan laundry dan cleaning dari mitra.</p>
             </div>
           </article>
 
-          <article class="project-card card reveal">
-            <div class="project-thumb zoomable" data-caption="Redesign UI Aplikasi G7">
+          <article class="project-card group/card">
+            <div class="project-thumb group/thumb" data-caption="Redesign UI Aplikasi G7">
               <img src="images/g7.png" alt="Web Presence" loading="lazy" />
-              <span class="zoom-hint">🔍 Klik untuk perbesar</span>
+              <span class="zoom-hint">Perbesar</span>
             </div>
             <div class="project-body">
-              <h3 class="title-md">Redesign UI Aplikasi G7</h3>
-              <div class="tags">
-                <span class="tag red">Tailwind</span>
+              <h3 class="project-title">Redesign UI Aplikasi G7</h3>
+              <div class="flex flex-wrap gap-[5px] mt-[7px] mb-2">
+                <span class="tag text-red">Tailwind</span>
                 <span class="tag">JavaScript</span>
                 <span class="tag">CSS</span>
               </div>
-              <p>Redesign tampilan Aplikasi Gerakan 7 Generasi Emas menggunakan Tailwind CSS dan JavaScript agar lebih
-                responsif dan nyaman digunakan.</p>
-
+              <p class="project-desc">Redesign tampilan Aplikasi Gerakan 7 Generasi Emas menggunakan Tailwind CSS dan
+                JavaScript agar lebih responsif dan nyaman digunakan.</p>
             </div>
           </article>
 
-          <article class="project-card card reveal">
-            <div class="project-thumb zoomable" data-caption="Redesign UI Aplikasi Balai Latihan Kerja">
+          <article class="project-card group/card">
+            <div class="project-thumb group/thumb" data-caption="Redesign UI Aplikasi Balai Latihan Kerja">
               <img src="images/blk.png" alt="Web Presence" loading="lazy" />
-              <span class="zoom-hint">🔍 Klik untuk perbesar</span>
+              <span class="zoom-hint">Perbesar</span>
             </div>
             <div class="project-body">
-              <h3 class="title-md">Redesign UI Aplikasi Balai Latihan Kerja</h3>
-              <div class="tags">
-                <span class="tag red">Tailwind</span>
+              <h3 class="project-title">Redesign UI Aplikasi Balai Latihan Kerja</h3>
+              <div class="flex flex-wrap gap-[5px] mt-[7px] mb-2">
+                <span class="tag text-red">Tailwind</span>
                 <span class="tag">JavaScript</span>
                 <span class="tag">CSS</span>
               </div>
-              <p>Redesign tampilan Aplikasi Balai Latihan Kerja dengan Tailwind CSS dan JavaScript untuk pengalaman
-                pengguna yang lebih modern dan mudah dinavigasi.</p>
-
+              <p class="project-desc">Redesign tampilan Aplikasi Balai Latihan Kerja dengan Tailwind CSS dan JavaScript
+                untuk pengalaman pengguna yang lebih modern dan mudah dinavigasi.</p>
             </div>
           </article>
         </div>
@@ -1788,158 +396,157 @@
     </section>
 
     <!-- KEGIATAN -->
-    <section class="section section-soft" id="kegiatan">
-      <div class="container">
+    <section class="section bg-soft" id="kegiatan">
+      <div class="wrap">
         <div class="section-head reveal">
           <div>
             <p class="eyebrow">Kegiatan</p>
-            <h2 class="title-lg">Selain coding, sesekali jadi pembicara juga.</h2>
+            <h2 class="title-lg">Berbagi ilmu di luar layar.</h2>
           </div>
         </div>
 
-        <div class="activity-marquee reveal">
-          <div class="activity-track">
-            <article class="activity-card">
+        <div class="activity-marquee group reveal relative mt-2 overflow-hidden">
+          <div class="activity-track flex gap-[18px] w-max animate-marquee group-hover:[animation-play-state:paused]">
+            <article class="activity-card group/act">
               <div class="activity-thumb">
                 <img src="images/narasumber apb bersama bem ui.jpeg" alt="Narasumber APB bersama BEM UI"
                   loading="lazy" />
               </div>
               <div class="activity-body">
-                <h3 class="title-sm">Narasumber Alat Peringatan Banjir bersama BEM UI</h3>
-                <p class="activity-desc">Sharing materi Alat Peringatan Banjir dalam kegiatan yang digelar bareng BEM
-                  UI.</p>
+                <h3 class="activity-title">Narasumber Alat Peringatan Banjir bersama BEM UI</h3>
+                <p class="activity-desc">Menyampaikan materi Alat Peringatan Banjir dalam kegiatan bersama BEM UI.</p>
               </div>
             </article>
 
-            <article class="activity-card">
+            <article class="activity-card group/act">
               <div class="activity-thumb">
                 <img src="images/sosialisasi apb duren mekar.jpeg" alt="Sosialisasi APB Duren Mekar" loading="lazy" />
               </div>
               <div class="activity-body">
-                <h3 class="title-sm">Sosialisasi Alat Peringatan Banjir di Duren Mekar</h3>
-                <p class="activity-desc">Sosialisasi Alat Peringatan Banjir ke warga di wilayah Duren Mekar.</p>
+                <h3 class="activity-title">Sosialisasi Alat Peringatan Banjir di Duren Mekar</h3>
+                <p class="activity-desc">Memperkenalkan Alat Peringatan Banjir kepada warga di wilayah Duren Mekar.</p>
               </div>
             </article>
 
-            <article class="activity-card">
+            <article class="activity-card group/act">
               <div class="activity-thumb">
                 <img src="images/pelatihan rakit apb damkar.jpeg" alt="Pelatihan Rakit APB Damkar" loading="lazy" />
               </div>
               <div class="activity-body">
-                <h3 class="title-sm">Pelatihan Rakit Alat Peringatan Banjir Damkar</h3>
-                <p class="activity-desc">Pelatihan merakit Alat Peringatan Banjir bareng tim Damkar Depok.</p>
+                <h3 class="activity-title">Pelatihan Rakit Alat Peringatan Banjir Damkar</h3>
+                <p class="activity-desc">Melatih tim Damkar Depok merakit Alat Peringatan Banjir secara mandiri.</p>
               </div>
             </article>
 
-            <article class="activity-card">
+            <article class="activity-card group/act">
               <div class="activity-thumb">
-                <img src="images/pelatihan rakit apb cipayung.jpeg" alt="Pelatihan Rakit APB Cipayung" loading="lazy" />
+                <img src="images/pelatihan rakit apb cipayung.jpeg" alt="Pelatihan Rakit APB Cipayung"
+                  loading="lazy" />
               </div>
               <div class="activity-body">
-                <h3 class="title-sm">Pelatihan Rakit Alat Peringatan Banjir di Cipayung</h3>
-                <p class="activity-desc">Pelatihan merakit Alat Peringatan Banjir untuk anak muda di Cipayung.</p>
+                <h3 class="activity-title">Pelatihan Rakit Alat Peringatan Banjir di Cipayung</h3>
+                <p class="activity-desc">Melatih generasi muda Cipayung merakit Alat Peringatan Banjir.</p>
               </div>
             </article>
 
-            <article class="activity-card">
+            <article class="activity-card group/act">
               <div class="activity-thumb">
                 <img src="images/presentasi apb-.jpeg" alt="Presentasi APB" loading="lazy" />
               </div>
               <div class="activity-body">
-                <h3 class="title-sm">Kegiatan World Humanitarian Day</h3>
+                <h3 class="activity-title">Kegiatan World Humanitarian Day</h3>
                 <p class="activity-desc">Presentasi Alat Peringatan Banjir kepada Head Of Office UN Ocha.</p>
               </div>
             </article>
 
-            <article class="activity-card">
+            <article class="activity-card group/act">
               <div class="activity-thumb">
                 <img src="images/sosialisasi alat-ratujaya.jpeg" alt="Sosialisasi Alat Ratujaya" loading="lazy" />
               </div>
               <div class="activity-body">
-                <h3 class="title-sm">Sosialisasi Alat Peringatan Banjir di Ratujaya</h3>
-                <p class="activity-desc">Sosialisasi penggunaan Alat Peringatan Banjir ke warga Ratujaya.</p>
+                <h3 class="activity-title">Sosialisasi Alat Peringatan Banjir di Ratujaya</h3>
+                <p class="activity-desc">Mengenalkan cara penggunaan Alat Peringatan Banjir kepada warga Ratujaya.</p>
               </div>
             </article>
 
-            <article class="activity-card">
+            <article class="activity-card group/act">
               <div class="activity-thumb">
                 <img src="images/pelatihan-git.jpeg" alt="Pelatihan Git" loading="lazy" />
               </div>
               <div class="activity-body">
-                <h3 class="title-sm">Pelatihan Git & Github</h3>
-                <p class="activity-desc">Ngajarin dasar-dasar Git & version control ke peserta.</p>
+                <h3 class="activity-title">Pelatihan Git & Github</h3>
+                <p class="activity-desc">Mengajarkan dasar-dasar Git dan version control kepada peserta.</p>
               </div>
             </article>
 
             <!-- DUPLIKAT UNTUK LOOPING -->
-            <article class="activity-card" aria-hidden="true">
+            <article class="activity-card group/act" aria-hidden="true">
               <div class="activity-thumb">
                 <img src="images/narasumber apb bersama bem ui.jpeg" alt="" loading="lazy" />
               </div>
               <div class="activity-body">
-                <h3 class="title-sm">Narasumber Alat Peringatan Banjir bersama BEM UI</h3>
-                <p class="activity-desc">Sharing materi Alat Peringatan Banjir dalam kegiatan yang digelar bareng BEM
-                  UI.</p>
+                <h3 class="activity-title">Narasumber Alat Peringatan Banjir bersama BEM UI</h3>
+                <p class="activity-desc">Menyampaikan materi Alat Peringatan Banjir dalam kegiatan bersama BEM UI.</p>
               </div>
             </article>
 
-            <article class="activity-card" aria-hidden="true">
+            <article class="activity-card group/act" aria-hidden="true">
               <div class="activity-thumb">
                 <img src="images/sosialisasi apb duren mekar.jpeg" alt="" loading="lazy" />
               </div>
               <div class="activity-body">
-                <h3 class="title-sm">Sosialisasi Alat Peringatan Banjir di Duren Mekar</h3>
-                <p class="activity-desc">Sosialisasi Alat Peringatan Banjir ke warga di wilayah Duren Mekar.</p>
+                <h3 class="activity-title">Sosialisasi Alat Peringatan Banjir di Duren Mekar</h3>
+                <p class="activity-desc">Memperkenalkan Alat Peringatan Banjir kepada warga di wilayah Duren Mekar.</p>
               </div>
             </article>
 
-            <article class="activity-card" aria-hidden="true">
+            <article class="activity-card group/act" aria-hidden="true">
               <div class="activity-thumb">
                 <img src="images/pelatihan rakit apb damkar.jpeg" alt="" loading="lazy" />
               </div>
               <div class="activity-body">
-                <h3 class="title-sm">Pelatihan Rakit Alat Peringatan Banjir Damkar</h3>
-                <p class="activity-desc">Pelatihan merakit Alat Peringatan Banjir bareng tim Damkar Depok.</p>
+                <h3 class="activity-title">Pelatihan Rakit Alat Peringatan Banjir Damkar</h3>
+                <p class="activity-desc">Melatih tim Damkar Depok merakit Alat Peringatan Banjir secara mandiri.</p>
               </div>
             </article>
 
-            <article class="activity-card" aria-hidden="true">
+            <article class="activity-card group/act" aria-hidden="true">
               <div class="activity-thumb">
                 <img src="images/pelatihan rakit apb cipayung.jpeg" alt="" loading="lazy" />
               </div>
               <div class="activity-body">
-                <h3 class="title-sm">Pelatihan Rakit Alat Peringatan Banjir di Cipayung</h3>
-                <p class="activity-desc">Pelatihan merakit Alat Peringatan Banjir untuk anak muda di Cipayung.</p>
+                <h3 class="activity-title">Pelatihan Rakit Alat Peringatan Banjir di Cipayung</h3>
+                <p class="activity-desc">Melatih generasi muda Cipayung merakit Alat Peringatan Banjir.</p>
               </div>
             </article>
 
-            <article class="activity-card" aria-hidden="true">
+            <article class="activity-card group/act" aria-hidden="true">
               <div class="activity-thumb">
                 <img src="images/presentasi apb-.jpeg" alt="" loading="lazy" />
               </div>
               <div class="activity-body">
-                <h3 class="title-sm">Kegiatan World Humanitarian Day</h3>
+                <h3 class="activity-title">Kegiatan World Humanitarian Day</h3>
                 <p class="activity-desc">Presentasi Alat Peringatan Banjir kepada Head Of Office UN Ocha.</p>
               </div>
             </article>
 
-            <article class="activity-card" aria-hidden="true">
+            <article class="activity-card group/act" aria-hidden="true">
               <div class="activity-thumb">
                 <img src="images/sosialisasi alat-ratujaya.jpeg" alt="" loading="lazy" />
               </div>
               <div class="activity-body">
-                <h3 class="title-sm">Sosialisasi Alat Peringatan Banjir di Ratujaya</h3>
-                <p class="activity-desc">Sosialisasi penggunaan Alat Peringatan Banjir ke warga Ratujaya.</p>
+                <h3 class="activity-title">Sosialisasi Alat Peringatan Banjir di Ratujaya</h3>
+                <p class="activity-desc">Mengenalkan cara penggunaan Alat Peringatan Banjir kepada warga Ratujaya.</p>
               </div>
             </article>
 
-            <article class="activity-card" aria-hidden="true">
+            <article class="activity-card group/act" aria-hidden="true">
               <div class="activity-thumb">
                 <img src="images/pelatihan-git.jpeg" alt="" loading="lazy" />
               </div>
               <div class="activity-body">
-                <h3 class="title-sm">Pelatihan Git & Github</h3>
-                <p class="activity-desc">Ngajarin dasar-dasar Git & version control ke peserta.</p>
+                <h3 class="activity-title">Pelatihan Git & Github</h3>
+                <p class="activity-desc">Mengajarkan dasar-dasar Git dan version control kepada peserta.</p>
               </div>
             </article>
           </div>
@@ -1949,63 +556,95 @@
 
     <!-- SKILL -->
     <section class="section" id="skill">
-      <div class="container">
+      <div class="wrap">
         <div class="section-head reveal">
           <div>
             <p class="eyebrow" data-i18n="skills.eyebrow">Skill</p>
-            <h2 class="title-lg" data-i18n="skills.title">Yang aku kuasai.</h2>
+            <h2 class="title-lg" data-i18n="skills.title">Keahlian & perangkat andalan.</h2>
           </div>
         </div>
 
-        <div class="skills-grid" id="skillsGrid">
+        <div class="grid grid-cols-1 sm:grid-cols-2 tab:grid-cols-4 gap-4" id="skillsGrid">
           <div class="skill-card card reveal">
             <div class="skill-header">
-              <span class="skill-dot red"></span>
+              <span class="skill-dot bg-red"></span>
               <h3 class="skill-category">Back-End</h3>
             </div>
-            <div class="skill-tags">
-              <span class="skill-pill">PHP</span>
-              <span class="skill-pill highlight">Laravel</span>
-              <span class="skill-pill">CodeIgniter</span>
-              <span class="skill-pill">REST API</span>
+            <div class="flex flex-wrap gap-2">
+              <div class="skill-tile" title="PHP">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP" loading="lazy" />
+              </div>
+              <div class="skill-tile" title="Laravel">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg" alt="Laravel" loading="lazy" />
+              </div>
+              <div class="skill-tile" title="CodeIgniter">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/codeigniter/codeigniter-plain.svg" alt="CodeIgniter" loading="lazy" />
+              </div>
+              <div class="skill-tile" title="REST API">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#1800AD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14" y1="4" x2="10" y2="20"/>
+                </svg>
+              </div>
             </div>
           </div>
 
           <div class="skill-card card reveal">
             <div class="skill-header">
-              <span class="skill-dot blue"></span>
+              <span class="skill-dot bg-blue"></span>
               <h3 class="skill-category">Front-End</h3>
             </div>
-            <div class="skill-tags">
-              <span class="skill-pill">HTML & CSS</span>
-              <span class="skill-pill highlight">JavaScript</span>
-              <span class="skill-pill">Tailwind CSS</span>
+            <div class="flex flex-wrap gap-2">
+              <div class="skill-tile" title="HTML5">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5" loading="lazy" />
+              </div>
+              <div class="skill-tile" title="CSS3">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3" loading="lazy" />
+              </div>
+              <div class="skill-tile" title="JavaScript">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" loading="lazy" />
+              </div>
+              <div class="skill-tile" title="Tailwind CSS">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" loading="lazy" />
+              </div>
             </div>
           </div>
 
           <div class="skill-card card reveal">
             <div class="skill-header">
-              <span class="skill-dot yellow"></span>
+              <span class="skill-dot bg-yellow"></span>
               <h3 class="skill-category">Database & Tools</h3>
             </div>
-            <div class="skill-tags">
-              <span class="skill-pill highlight">MySQL</span>
-              <span class="skill-pill">Git</span>
-              <span class="skill-pill">Payment Gateway</span>
+            <div class="flex flex-wrap gap-2">
+              <div class="skill-tile" title="MySQL">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL" loading="lazy" />
+              </div>
+              <div class="skill-tile" title="Git">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git" loading="lazy" />
+              </div>
+              <div class="skill-tile" title="GitHub">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="GitHub" loading="lazy" />
+              </div>
+              <div class="skill-tile" title="VS Code">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="VS Code" loading="lazy" />
+              </div>
             </div>
           </div>
 
           <div class="skill-card card reveal">
             <div class="skill-header">
-              <span class="skill-dot purple"></span>
+              <span class="skill-dot bg-[#8b5cf6]"></span>
               <h3 class="skill-category">Design & Creative</h3>
             </div>
-            <div class="skill-tags">
-              <span class="skill-pill highlight">Figma</span>
-              <span class="skill-pill">UI/UX</span>
-              <span class="skill-pill">Canva</span>
-              <span class="skill-pill">Photoshop</span>
-              <span class="skill-pill">QA</span>
+            <div class="flex flex-wrap gap-2">
+              <div class="skill-tile" title="Figma">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" alt="Figma" loading="lazy" />
+              </div>
+              <div class="skill-tile" title="Canva">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/canva/canva-original.svg" alt="Canva" loading="lazy" />
+              </div>
+              <div class="skill-tile" title="Photoshop">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/photoshop/photoshop-original.svg" alt="Photoshop" loading="lazy" />
+              </div>
             </div>
           </div>
         </div>
@@ -2013,83 +652,77 @@
     </section>
 
     <!-- KONTAK -->
-    <section class="section section-soft" id="kontak">
-      <div class="container contact-grid">
-        <aside class="contact-panel card reveal">
-          <p class="eyebrow" data-i18n="contact.eyebrow">Kontak</p>
-          <h2 class="title-lg" data-i18n="contact.title">Ayo bikin sesuatu bareng.</h2>
-          <p class="lead" data-i18n="contact.desc">Freelance, kolaborasi, atau konsultasi.</p>
-          <div class="contact-list">
-            <span class="contact-item"><span class="contact-mark">ID</span>Indonesia</span>
-            <a class="contact-item" href="https://instagram.com/korrastudio.id" target="_blank"><span
-                class="contact-mark">IG</span>@korrastudio.id</a>
-          </div>
-        </aside>
+    <section class="section bg-soft" id="kontak">
+      <div class="wrap">
+        <div class="card max-w-[780px] mx-auto px-5 py-8 sm:px-10 sm:py-11 text-center reveal">
+          <p class="eyebrow mx-auto" data-i18n="contact.eyebrow">Kontak</p>
+          <h2 class="title-lg" data-i18n="contact.title">Mari wujudkan ide Anda bersama.</h2>
+          <p class="lead max-w-[540px] mx-auto" data-i18n="contact.desc">Terbuka untuk proyek freelance, kolaborasi, maupun konsultasi. Jangan ragu untuk menyapa!</p>
 
-        <form class="form-card card reveal" id="contactForm" novalidate>
-          <div class="form-grid">
-            <div class="field">
-              <label for="name" data-i18n="form.name">Nama</label>
-              <input id="name" name="name" type="text" required />
-            </div>
-            <div class="field">
-              <label for="email" data-i18n="form.email">Email</label>
-              <input id="email" name="email" type="email" required />
-            </div>
-            <div class="field full">
-              <label for="message" data-i18n="form.message">Pesan</label>
-              <textarea id="message" name="message" required></textarea>
-            </div>
-            <div class="field full">
-              <button class="btn btn-red" type="submit" data-i18n="form.button">Kirim</button>
-            </div>
+          <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mt-7">
+           
+            <a href="https://www.linkedin.com/in/salsabilanuraisyah/" target="_blank" class="btn btn-outline px-4">
+              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+              <span>LinkedIn</span>
+            </a>
+            <a href="https://github.com/sallsabilanura" target="_blank" class="btn btn-outline px-4">
+              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+              <span>GitHub</span>
+            </a>
+            <a href="https://instagram.com/korrastudio.id" target="_blank" class="btn btn-outline px-4">
+              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              <span>@korrastudio.id</span>
+            </a>
           </div>
-          <div class="form-message" id="formMessage" data-i18n="form.success">Pesan terkirim.</div>
-        </form>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
+  <footer class="footer bg-blue text-white pt-12 pb-5">
+    <div class="wrap">
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-[30px] tab:grid-cols-[1.4fr_0.8fr_1fr] tab:gap-6">
         <div>
-          <h2>Salsabila</h2>
-          <p data-i18n="footer.tagline">Kode & desain untuk produk digital.</p>
+          <h2 class="mb-2 font-display text-[1.3rem] font-bold">Salsabila</h2>
+          <p class="text-[0.85rem] opacity-80" data-i18n="footer.tagline">Merangkai kode dan desain menjadi produk digital.</p>
         </div>
         <div>
-          <h3>Halaman</h3>
-          <div class="footer-links">
-            <a href="#beranda" data-i18n="nav.home">Beranda</a>
-            <a href="#tentang" data-i18n="nav.about">Tentang</a>
-            <a href="#project" data-i18n="nav.project">Project</a>
-            <a href="#kegiatan">Kegiatan</a>
-            <a href="#skill" data-i18n="nav.skills">Skill</a>
-            <a href="#kontak" data-i18n="nav.contact">Kontak</a>
+          <h3 class="footer-title">Halaman</h3>
+          <div class="grid gap-2">
+            <a class="footer-link" href="#beranda" data-i18n="nav.home">Beranda</a>
+            <a class="footer-link" href="#tentang" data-i18n="nav.about">Tentang</a>
+            <a class="footer-link" href="#project" data-i18n="nav.project">Project</a>
+            <a class="footer-link" href="#kegiatan">Kegiatan</a>
+            <a class="footer-link" href="#skill" data-i18n="nav.skills">Skill</a>
+            <a class="footer-link" href="#kontak" data-i18n="nav.contact">Kontak</a>
           </div>
         </div>
         <div>
-          <h3>Kontak</h3>
-          <div class="footer-links">
-            <span>salsabilanura0909@gmail.com</span>
-            <span>Indonesia</span>
-            <a href="https://instagram.com/korrastudio.id">@korrastudio.id</a>
+          <h3 class="footer-title">Kontak</h3>
+          <div class="grid gap-2">
+            <span class="text-[0.85rem]">salsabilanura0909@gmail.com</span>
+            <span class="text-[0.85rem]">Indonesia</span>
+            <a class="footer-link" href="https://instagram.com/korrastudio.id">@korrastudio.id</a>
           </div>
         </div>
       </div>
-      <div class="footer-bottom">
-        <span>&copy; 2026 Salsabila</span>
-        <a href="https://instagram.com/korrastudio.id" target="_blank">@korrastudio.id</a>
+      <div
+        class="flex flex-col items-center gap-4 mt-6 pt-3.5 border-t border-white/15 text-center sm:flex-row sm:justify-between sm:text-left opacity-[0.85]">
+        <span class="text-[0.85rem]">&copy; 2026 Salsabila</span>
+        <a class="footer-link" href="https://instagram.com/korrastudio.id" target="_blank">@korrastudio.id</a>
       </div>
     </div>
   </footer>
 
   <!-- LIGHTBOX / ZOOM PREVIEW -->
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Tutup">&times;</button>
-    <figure class="lightbox-frame">
-      <img id="lightboxImage" src="" alt="" />
-      <figcaption id="lightboxCaption"></figcaption>
+  <div id="lightbox"
+    class="lightbox hidden fixed inset-0 z-[200] items-center justify-center px-3 py-5 sm:px-5 sm:py-10 bg-[rgba(10,10,20,0.86)] backdrop-blur-[4px]">
+    <button id="lightboxClose" type="button" aria-label="Tutup"
+      class="absolute top-3 right-3 sm:top-5 sm:right-6 w-9 h-9 sm:w-[42px] sm:h-[42px] border-2 border-white rounded-full bg-transparent text-white text-[1.2rem] sm:text-2xl leading-none cursor-pointer transition duration-[180ms] hover:bg-white hover:text-ink">&times;</button>
+    <figure class="flex flex-col items-center gap-3 max-w-[min(920px,100%)] max-h-full m-0">
+      <img id="lightboxImage" src="" alt=""
+        class="max-w-full max-h-[60vh] sm:max-h-[78vh] rounded-lg bg-white shadow-[0_24px_60px_rgba(0,0,0,0.4)]" />
+      <figcaption id="lightboxCaption" class="font-display font-bold text-[0.95rem] text-center text-white"></figcaption>
     </figure>
   </div>
 

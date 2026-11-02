@@ -14,9 +14,9 @@ const translations = {
     'hero.eyebrow': 'Portfolio',
     'hero.fullName': 'Salsabila Nur Aisyah',
     'hero.tagline': 'Web Developer',
-    'hero.intro': 'Berpengalaman bikin aplikasi web pakai Laravel, Tailwind CSS, dan MySQL. Cepat belajar, disiplin, dan suka ngurusin detail.',
+    'hero.intro': 'Membangun aplikasi web yang rapi dan fungsional dengan Laravel, Tailwind CSS, dan MySQL. Senang mempelajari hal baru, disiplin, dan teliti hingga ke detail terkecil.',
     'hero.ctaProject': 'Lihat Project',
-    'hero.ctaContact': 'Hubungi',
+    'hero.ctaContact': 'Hubungi Saya',
     'hero.statProjects': 'Project',
     'hero.statExperience': 'Pengalaman',
     'hero.statCertification': 'Sertifikasi',
@@ -29,8 +29,8 @@ const translations = {
     'about.education': 'Sistem Informasi',
     'about.linkedin': 'LinkedIn',
     'about.github': 'GitHub',
-    'about.title': 'Dari kode sampai produk berguna.',
-    'about.bio': 'Berpengalaman bikin aplikasi web pakai Laravel, Tailwind CSS, dan MySQL. Cepat belajar, disiplin, dan suka ngurusin detail.',
+    'about.title': 'Dari baris kode menjadi produk yang bermanfaat.',
+    'about.bio': 'Berlatar belakang Sistem Informasi, saya fokus pada pengembangan web. Saya menikmati proses mengubah ide menjadi aplikasi yang nyaman digunakan, mulai dari merancang tampilan hingga mengelola database.',
     
     // Studio
     'studio.eyebrow': 'Design Brand',
@@ -38,26 +38,26 @@ const translations = {
     
     // Projects
     'projects.eyebrow': 'Project',
-    'projects.title': 'Karya terpilih.',
+    'projects.title': 'Beberapa karya pilihan.',
     'projects.btnDemo': 'Demo',
     'projects.btnRepo': 'Repo',
     
     // Skills
     'skills.eyebrow': 'Skill',
-    'skills.title': 'Yang aku kuasai.',
+    'skills.title': 'Keahlian & perangkat andalan.',
     
     // Contact
     'contact.eyebrow': 'Kontak',
-    'contact.title': 'Ayo bikin sesuatu bareng.',
-    'contact.desc': 'Freelance, kolaborasi, atau konsultasi.',
-    'form.name': 'Nama',
+    'contact.title': 'Mari wujudkan ide Anda bersama.',
+    'contact.desc': 'Terbuka untuk proyek freelance, kolaborasi, maupun konsultasi. Jangan ragu untuk menyapa!',
+    'contact.ctaEmail': 'Kirim Email',
     'form.email': 'Email',
     'form.message': 'Pesan',
-    'form.button': 'Kirim',
-    'form.success': 'Pesan terkirim.',
+    'form.button': 'Kirim Pesan',
+    'form.success': 'Terima kasih! Pesan Anda sudah terkirim.',
     
     // Footer
-    'footer.tagline': 'Kode & desain untuk produk digital.'
+    'footer.tagline': 'Merangkai kode dan desain menjadi produk digital.'
   },
   en: {
     // Navigation
@@ -72,9 +72,9 @@ const translations = {
     'hero.eyebrow': 'Portfolio',
     'hero.fullName': 'Salsabila Nur Aisyah',
     'hero.tagline': 'Web Developer',
-    'hero.intro': 'Experienced in building web apps with Laravel, Tailwind CSS, and MySQL. Fast learner, disciplined, and detail-oriented.',
+    'hero.intro': 'Building clean, functional web applications with Laravel, Tailwind CSS, and MySQL. Eager to learn, disciplined, and attentive to the smallest details.',
     'hero.ctaProject': 'View Projects',
-    'hero.ctaContact': 'Contact',
+    'hero.ctaContact': 'Get in Touch',
     'hero.statProjects': 'Projects',
     'hero.statExperience': 'Experience',
     'hero.statCertification': 'Certification',
@@ -87,8 +87,8 @@ const translations = {
     'about.education': 'Information Systems',
     'about.linkedin': 'LinkedIn',
     'about.github': 'GitHub',
-    'about.title': 'From code to useful products.',
-    'about.bio': 'Experienced in building web apps with Laravel, Tailwind CSS, and MySQL. Fast learner, disciplined, and detail-oriented.',
+    'about.title': 'From lines of code to meaningful products.',
+    'about.bio': 'With a background in Information Systems, I focus on web development. I enjoy turning ideas into applications that feel easy to use, from designing the interface to managing the database.',
     
     // Studio
     'studio.eyebrow': 'Design Brand',
@@ -96,26 +96,26 @@ const translations = {
     
     // Projects
     'projects.eyebrow': 'Projects',
-    'projects.title': 'Selected works.',
+    'projects.title': 'A few selected works.',
     'projects.btnDemo': 'Demo',
     'projects.btnRepo': 'Repo',
     
     // Skills
     'skills.eyebrow': 'Skills',
-    'skills.title': 'What I master.',
+    'skills.title': 'Skills & go-to tools.',
     
     // Contact
     'contact.eyebrow': 'Contact',
-    'contact.title': 'Let\'s build something together.',
-    'contact.desc': 'Freelance, collaboration, or consulting.',
-    'form.name': 'Name',
+    'contact.title': 'Let\'s bring your ideas to life.',
+    'contact.desc': 'Open to freelance projects, collaborations, and consultations. Feel free to say hello!',
+    'contact.ctaEmail': 'Send Email',
     'form.email': 'Email',
     'form.message': 'Message',
-    'form.button': 'Send',
-    'form.success': 'Message sent.',
+    'form.button': 'Send Message',
+    'form.success': 'Thank you! Your message has been sent.',
     
     // Footer
-    'footer.tagline': 'Code & design for digital products.'
+    'footer.tagline': 'Crafting code and design into digital products.'
   }
 };
 
@@ -287,6 +287,32 @@ window.addEventListener('keydown', (event) => {
     closeLightbox();
   }
 });
+
+/* ===== Project Slider (geser kanan-kiri) ===== */
+const projectSlider = document.getElementById('projectSlider');
+const sliderPrev = document.getElementById('sliderPrev');
+const sliderNext = document.getElementById('sliderNext');
+
+if (projectSlider && sliderPrev && sliderNext) {
+  const GAP = 16;
+
+  const slideStep = () => {
+    const card = projectSlider.querySelector('article');
+    return card ? card.offsetWidth + GAP : projectSlider.clientWidth;
+  };
+
+  const updateSliderButtons = () => {
+    const maxScroll = projectSlider.scrollWidth - projectSlider.clientWidth;
+    sliderPrev.disabled = projectSlider.scrollLeft <= 4;
+    sliderNext.disabled = projectSlider.scrollLeft >= maxScroll - 4;
+  };
+
+  sliderPrev.addEventListener('click', () => projectSlider.scrollBy({ left: -slideStep(), behavior: 'smooth' }));
+  sliderNext.addEventListener('click', () => projectSlider.scrollBy({ left: slideStep(), behavior: 'smooth' }));
+  projectSlider.addEventListener('scroll', updateSliderButtons, { passive: true });
+  window.addEventListener('resize', updateSliderButtons);
+  updateSliderButtons();
+}
 
 // Set initial language
 setLanguage(localStorage.getItem('salsa-language') || 'id');
