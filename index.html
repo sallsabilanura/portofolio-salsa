@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -49,7 +50,7 @@
       font-family: 'Inter', Arial, sans-serif;
       color: var(--ink);
       background-color: var(--white);
-      background-image: 
+      background-image:
         linear-gradient(rgba(24, 0, 173, 0.04) 1px, transparent 1px),
         linear-gradient(90deg, rgba(24, 0, 173, 0.04) 1px, transparent 1px);
       background-size: 36px 36px;
@@ -615,15 +616,18 @@
       margin-top: 16px;
     }
 
-    /* Projects */
+    /* Projects - Compact & Sleek */
     .project-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 16px;
     }
 
     .project-card {
       overflow: hidden;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
       transition: transform var(--transition), box-shadow var(--transition);
       display: flex;
       flex-direction: column;
@@ -636,10 +640,11 @@
 
     .project-thumb {
       position: relative;
-      min-height: 180px;
-      padding: 16px;
-      border-bottom: 1px solid var(--border);
+      height: 135px;
+      padding: 0;
+      overflow: hidden;
       background: var(--soft);
+      border-bottom: 1px solid var(--border);
     }
 
     .project-thumb.zoomable {
@@ -648,18 +653,21 @@
 
     .zoom-hint {
       position: absolute;
-      inset: 16px;
-      display: flex;
+      bottom: 8px;
+      right: 8px;
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      border-radius: var(--radius);
-      background: rgba(24, 0, 173, 0.55);
-      color: var(--white);
-      font-size: 0.85rem;
-      font-weight: 700;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(26, 26, 26, 0.78);
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 600;
       opacity: 0;
       transition: opacity var(--transition);
       pointer-events: none;
+      backdrop-filter: blur(4px);
     }
 
     .project-thumb.zoomable:hover .zoom-hint {
@@ -668,38 +676,49 @@
 
     .project-card img {
       width: 100%;
-      height: 180px;
+      height: 100%;
       object-fit: cover;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
+      display: block;
+      border: none;
+      border-radius: 0;
       background: var(--white);
+      transition: transform 300ms ease;
+    }
+
+    .project-card:hover img {
+      transform: scale(1.05);
     }
 
     .project-body {
-      padding: 18px 20px;
+      padding: 13px 15px 15px;
       flex: 1;
       display: flex;
       flex-direction: column;
     }
 
-    .project-body .btn {
-      align-self: flex-start;
+    .project-body .title-md {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin: 0;
+      line-height: 1.35;
+      color: var(--ink);
     }
 
     .tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
-      margin: 10px 0 12px;
+      gap: 5px;
+      margin: 7px 0 8px;
     }
 
     .tag {
-      padding: 4px 10px;
+      padding: 2px 7px;
       border-radius: 4px;
       background: var(--soft);
       color: var(--blue);
-      font-size: 0.7rem;
-      font-weight: 800;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
     }
 
     .tag.red {
@@ -709,6 +728,13 @@
     .tag.yellow {
       background: var(--yellow);
       color: var(--ink);
+    }
+
+    .project-body p {
+      font-size: 0.8rem;
+      line-height: 1.5;
+      color: var(--muted);
+      margin: 0;
     }
 
     /* Kegiatan */
@@ -735,6 +761,7 @@
       from {
         transform: translateX(0);
       }
+
       to {
         transform: translateX(-50%);
       }
@@ -790,15 +817,87 @@
       line-height: 1.5;
     }
 
-    /* Skills */
+    /* Skills - Seamless & Compact */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
     }
 
     .skill-card {
-      padding: 20px;
+      padding: 16px 18px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .skill-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .skill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .skill-dot.red { background: var(--red); }
+    .skill-dot.blue { background: var(--blue); }
+    .skill-dot.yellow { background: var(--yellow); }
+    .skill-dot.purple { background: #8b5cf6; }
+
+    .skill-category {
+      margin: 0;
+      font-family: 'Sora', Arial, sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .skill-pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--soft);
+      border: 1px solid var(--border);
+      color: var(--ink);
+      font-size: 0.75rem;
+      font-weight: 600;
+      transition: all var(--transition);
+      line-height: 1.4;
+    }
+
+    .skill-pill:hover {
+      background: var(--white);
+      border-color: var(--blue);
+      color: var(--blue);
+      transform: translateY(-1px);
+    }
+
+    .skill-pill.highlight {
+      background: rgba(24, 0, 173, 0.06);
+      border-color: rgba(24, 0, 173, 0.2);
+      color: var(--blue);
     }
 
     /* Contact */
@@ -1051,6 +1150,7 @@
     }
 
     @media (max-width: 900px) {
+
       .hero-grid,
       .about-grid,
       .contact-grid {
@@ -1431,6 +1531,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
+
       *,
       *::before,
       *::after {
@@ -1450,6 +1551,7 @@
     }
   </style>
 </head>
+
 <body>
   <header class="site-header">
     <nav class="nav container">
@@ -1485,13 +1587,14 @@
           <p class="eyebrow" data-i18n="hero.eyebrow">Portfolio</p>
           <h1 class="title-xl">Salsabila</h1>
           <h2 class="title-lg" data-i18n="hero.tagline">Web Developer.</h2>
-          <p class="lead" data-i18n="hero.intro">Berpengalaman bikin aplikasi web pakai Laravel, Tailwind CSS, dan MySQL. Cepat belajar, disiplin, dan suka ngurusin detail.</p>
-      
+          <p class="lead" data-i18n="hero.intro">Berpengalaman bikin aplikasi web pakai Laravel, Tailwind CSS, dan
+            MySQL. Cepat belajar, disiplin, dan suka ngurusin detail.</p>
+
           <div class="hero-actions">
             <a class="btn btn-red" href="#project" data-i18n="hero.ctaProject">Lihat Project</a>
             <a class="btn btn-outline" href="#kontak" data-i18n="hero.ctaContact">Hubungi</a>
           </div>
-          
+
           <div class="hero-stats">
             <div class="stat"><strong>3+</strong><span data-i18n="hero.statProjects">Project</span></div>
             <div class="stat"><strong>3</strong><span data-i18n="hero.statExperience">Pengalaman</span></div>
@@ -1551,22 +1654,29 @@
           <h2 class="title-md">Salsabila Nur Aisyah</h2>
           <p class="lead" data-i18n="hero.tagline">Web Developer</p>
           <div class="info-list">
-            <div class="info-row"><strong data-i18n="about.locationLabel">Lokasi</strong><span data-i18n="about.location">Depok</span></div>
-            <div class="info-row"><strong data-i18n="about.educationLabel">Pendidikan</strong><span data-i18n="about.education">Sistem Informasi</span></div>
-            <div class="info-row"><strong data-i18n="about.linkedin">LinkedIn</strong><a href="https://www.linkedin.com/in/salsabilanuraisyah/" class="text-blue">/in/salsabilanuraisyah</a></div>
-            <div class="info-row"><strong data-i18n="about.github">GitHub</strong><a href="https://github.com/sallsabilanura" class="text-blue">sallsabilanura</a></div>
+            <div class="info-row"><strong data-i18n="about.locationLabel">Lokasi</strong><span
+                data-i18n="about.location">Depok</span></div>
+            <div class="info-row"><strong data-i18n="about.educationLabel">Pendidikan</strong><span
+                data-i18n="about.education">Sistem Informasi</span></div>
+            <div class="info-row"><strong data-i18n="about.linkedin">LinkedIn</strong><a
+                href="https://www.linkedin.com/in/salsabilanuraisyah/" class="text-blue">/in/salsabilanuraisyah</a>
+            </div>
+            <div class="info-row"><strong data-i18n="about.github">GitHub</strong><a
+                href="https://github.com/sallsabilanura" class="text-blue">sallsabilanura</a></div>
           </div>
         </aside>
 
         <div class="about-copy card reveal">
           <p class="eyebrow" data-i18n="about.eyebrow">Tentang</p>
           <h2 class="title-lg" data-i18n="about.title">Dari kode sampai produk berguna.</h2>
-          <p class="lead" data-i18n="about.bio">Berpengalaman bikin aplikasi web pakai Laravel, Tailwind CSS, dan MySQL. Cepat belajar, disiplin, dan suka ngurusin detail.</p>
-        
+          <p class="lead" data-i18n="about.bio">Berpengalaman bikin aplikasi web pakai Laravel, Tailwind CSS, dan MySQL.
+            Cepat belajar, disiplin, dan suka ngurusin detail.</p>
+
           <div class="studio-callout">
             <p class="eyebrow" data-i18n="studio.eyebrow">Design Brand</p>
             <h3 class="title-md">Korrastudio.id</h3>
-            <a class="btn btn-blue" href="https://instagram.com/korrastudio.id" target="_blank" data-i18n="studio.button">Follow</a>
+            <a class="btn btn-blue" href="https://instagram.com/korrastudio.id" target="_blank"
+              data-i18n="studio.button">Follow</a>
           </div>
         </div>
       </div>
@@ -1595,10 +1705,9 @@
                 <span class="tag">Tailwind</span>
                 <span class="tag yellow">MySQL</span>
               </div>
-              <p>Sistem pendataan aset yang otomatis menghitung nilai depresiasi menggunakan metode garis lurus, lengkap dengan laporan dan riwayat transaksi aset.</p>
-              <div style="display: flex; gap: 10px; margin-top: 16px;">
-                <a class="btn btn-red" href="https://asetku.hsucamp.co.id" target="_blank" data-i18n="projects.btnDemo">Demo</a>
-              </div>
+              <p>Sistem pendataan aset yang otomatis menghitung nilai depresiasi menggunakan metode garis lurus, lengkap
+                dengan laporan dan riwayat transaksi aset.</p>
+
             </div>
           </article>
 
@@ -1615,10 +1724,9 @@
                 <span class="tag">JavaScript</span>
                 <span class="tag">Tailwind</span>
               </div>
-              <p>Aplikasi internal untuk mencatat absensi pendampingan, catatan kebaikan, serta mengatur hak akses Kakak Asuh dan Admin secara terstruktur.</p>
-              <div style="display: flex; gap: 10px; margin-top: 16px;">
-                <a class="btn btn-red" href="https://rekanevent.com" target="_blank" data-i18n="projects.btnDemo">Demo</a>
-              </div>
+              <p>Aplikasi internal untuk mencatat absensi pendampingan, catatan kebaikan, serta mengatur hak akses Kakak
+                Asuh dan Admin secara terstruktur.</p>
+
             </div>
           </article>
 
@@ -1634,10 +1742,9 @@
                 <span class="tag yellow">MySQL</span>
                 <span class="tag">Tailwind</span>
               </div>
-              <p>Sistem manajemen kos dan properti yang mencakup pengelolaan penyewa dan tagihan, termasuk layanan laundry dan cleaning dari mitra.</p>
-              <div style="display: flex; gap: 10px; margin-top: 16px;">
-                <a class="btn btn-outline" href="https://github.com/sallsabilanura/Koskora" data-i18n="projects.btnRepo">Repo</a>
-              </div>
+              <p>Sistem manajemen kos dan properti yang mencakup pengelolaan penyewa dan tagihan, termasuk layanan
+                laundry dan cleaning dari mitra.</p>
+
             </div>
           </article>
 
@@ -1653,10 +1760,9 @@
                 <span class="tag">JavaScript</span>
                 <span class="tag">CSS</span>
               </div>
-              <p>Redesign tampilan Aplikasi Gerakan 7 Generasi Emas menggunakan Tailwind CSS dan JavaScript agar lebih responsif dan nyaman digunakan.</p>
-              <div style="display: flex; gap: 10px; margin-top: 16px;">
-                <a class="btn btn-red" href="https://sigema.onlinet.id" target="_blank" data-i18n="projects.btnDemo">Demo</a>
-              </div>
+              <p>Redesign tampilan Aplikasi Gerakan 7 Generasi Emas menggunakan Tailwind CSS dan JavaScript agar lebih
+                responsif dan nyaman digunakan.</p>
+
             </div>
           </article>
 
@@ -1672,10 +1778,9 @@
                 <span class="tag">JavaScript</span>
                 <span class="tag">CSS</span>
               </div>
-              <p>Redesign tampilan Aplikasi Balai Latihan Kerja dengan Tailwind CSS dan JavaScript untuk pengalaman pengguna yang lebih modern dan mudah dinavigasi.</p>
-              <div style="display: flex; gap: 10px; margin-top: 16px;">
-                <a class="btn btn-red" href="https://blk.onlinet.id" target="_blank" data-i18n="projects.btnDemo">Demo</a>
-              </div>
+              <p>Redesign tampilan Aplikasi Balai Latihan Kerja dengan Tailwind CSS dan JavaScript untuk pengalaman
+                pengguna yang lebih modern dan mudah dinavigasi.</p>
+
             </div>
           </article>
         </div>
@@ -1696,11 +1801,13 @@
           <div class="activity-track">
             <article class="activity-card">
               <div class="activity-thumb">
-                <img src="images/narasumber apb bersama bem ui.jpeg" alt="Narasumber APB bersama BEM UI" loading="lazy" />
+                <img src="images/narasumber apb bersama bem ui.jpeg" alt="Narasumber APB bersama BEM UI"
+                  loading="lazy" />
               </div>
               <div class="activity-body">
                 <h3 class="title-sm">Narasumber Alat Peringatan Banjir bersama BEM UI</h3>
-                <p class="activity-desc">Sharing materi Alat Peringatan Banjir dalam kegiatan yang digelar bareng BEM UI.</p>
+                <p class="activity-desc">Sharing materi Alat Peringatan Banjir dalam kegiatan yang digelar bareng BEM
+                  UI.</p>
               </div>
             </article>
 
@@ -1771,7 +1878,8 @@
               </div>
               <div class="activity-body">
                 <h3 class="title-sm">Narasumber Alat Peringatan Banjir bersama BEM UI</h3>
-                <p class="activity-desc">Sharing materi Alat Peringatan Banjir dalam kegiatan yang digelar bareng BEM UI.</p>
+                <p class="activity-desc">Sharing materi Alat Peringatan Banjir dalam kegiatan yang digelar bareng BEM
+                  UI.</p>
               </div>
             </article>
 
@@ -1850,56 +1958,56 @@
         </div>
 
         <div class="skills-grid" id="skillsGrid">
-          <article class="skill-card card reveal">
-            <h3 class="title-md">Back-End & Framework</h3>
-            <ul class="skill-items">
-              <li>PHP</li>
-              <li>Laravel</li>
-              <li>CodeIgniter (CI)</li>
-              <li>REST API</li>
-            </ul>
-          </article>
+          <div class="skill-card card reveal">
+            <div class="skill-header">
+              <span class="skill-dot red"></span>
+              <h3 class="skill-category">Back-End</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-pill">PHP</span>
+              <span class="skill-pill highlight">Laravel</span>
+              <span class="skill-pill">CodeIgniter</span>
+              <span class="skill-pill">REST API</span>
+            </div>
+          </div>
 
-          <article class="skill-card card reveal">
-            <h3 class="title-md">Front-End & Database</h3>
-            <ul class="skill-items">
-              <li>HTML & CSS</li>
-              <li>JavaScript</li>
-              <li>Tailwind</li>
-              <li>MySQL</li>
-              <li>Payment Gateway</li>
-            </ul>
-          </article>
+          <div class="skill-card card reveal">
+            <div class="skill-header">
+              <span class="skill-dot blue"></span>
+              <h3 class="skill-category">Front-End</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-pill">HTML & CSS</span>
+              <span class="skill-pill highlight">JavaScript</span>
+              <span class="skill-pill">Tailwind CSS</span>
+            </div>
+          </div>
 
-          <article class="skill-card card reveal">
-            <h3 class="title-md">Design & Management</h3>
-            <ul class="skill-items">
-              <li>Figma</li>
-              <li>UI/UX Design</li>
-              <li>Canva &amp; Photoshop</li>
-              <li>QA &amp; Team Project</li>
-            </ul>
-          </article>
-        </div>
+          <div class="skill-card card reveal">
+            <div class="skill-header">
+              <span class="skill-dot yellow"></span>
+              <h3 class="skill-category">Database & Tools</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-pill highlight">MySQL</span>
+              <span class="skill-pill">Git</span>
+              <span class="skill-pill">Payment Gateway</span>
+            </div>
+          </div>
 
-        <div class="tool-list reveal">
-          <span class="pill">PHP</span>
-          <span class="pill pill-yellow">Laravel</span>
-          <span class="pill">CodeIgniter</span>
-          <span class="pill">JavaScript</span>
-          <span class="pill">MySQL</span>
-          <span class="pill pill-red">Tailwind</span>
-          <span class="pill pill-red">REST API</span>
-          <span class="pill pill-yellow">Payment Gateway</span>
-          <span class="pill">HTML</span>
-          <span class="pill">CSS</span>
-          <span class="pill pill-red">Figma</span>
-          <span class="pill pill-yellow">UI/UX</span>
-          <span class="pill">Canva</span>
-          <span class="pill">Photoshop</span>
-          <span class="pill">Git</span>
-          <span class="pill pill-red">QA</span>
-          <span class="pill pill-yellow">Team Project</span>
+          <div class="skill-card card reveal">
+            <div class="skill-header">
+              <span class="skill-dot purple"></span>
+              <h3 class="skill-category">Design & Creative</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-pill highlight">Figma</span>
+              <span class="skill-pill">UI/UX</span>
+              <span class="skill-pill">Canva</span>
+              <span class="skill-pill">Photoshop</span>
+              <span class="skill-pill">QA</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1912,9 +2020,9 @@
           <h2 class="title-lg" data-i18n="contact.title">Ayo bikin sesuatu bareng.</h2>
           <p class="lead" data-i18n="contact.desc">Freelance, kolaborasi, atau konsultasi.</p>
           <div class="contact-list">
-            <a class="contact-item" href="mailto:salsabilanura0909@gmail.com"><span class="contact-mark">E</span>salsabilanura0909@gmail.com</a>
             <span class="contact-item"><span class="contact-mark">ID</span>Indonesia</span>
-            <a class="contact-item" href="https://instagram.com/korrastudio.id" target="_blank"><span class="contact-mark">IG</span>@korrastudio.id</a>
+            <a class="contact-item" href="https://instagram.com/korrastudio.id" target="_blank"><span
+                class="contact-mark">IG</span>@korrastudio.id</a>
           </div>
         </aside>
 
@@ -1987,4 +2095,5 @@
 
   <script src="js/main.js"></script>
 </body>
+
 </html>
